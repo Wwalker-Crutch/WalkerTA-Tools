@@ -15,6 +15,9 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
 - **Base64 Decode (`64d`)**  
   Decodes standard Base64-encoded strings for analysis or cleanup. Accepts both padded and unpadded input.
 
+- **Base64 Encode (`64e`)**  
+  Encodes standard UTF-8 plaintext into Base64 format. Useful for obscuring sensitive strings.
+
 - **Base64 URL Splitter (`64url`)**  
   Splits and decodes Base64-encoded segments found inside URLs, replacing sensitive elements with safe placeholders (e.g., `YOUR_COMPANY`, `ANON_USER`).
 
@@ -37,6 +40,8 @@ python walkerTAtools.py
 Once running, you'll be prompted to enter a command. Supported commands include:
 
 64d      → Run Base64 Decode
+
+64e      → Run Base64 Encode
 
 64url    → Run Base64 URL Splitter
 
