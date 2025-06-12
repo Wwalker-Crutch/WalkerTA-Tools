@@ -1,4 +1,4 @@
-# 🧰 WalkerTATools — CLI Triage and Analysis Utlity
+# 🧰 WalkerTATools, CLI Triage and Analysis Utlity Program
 
 ### Author:
 William Walker @ Crutchfield
