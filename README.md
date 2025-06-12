@@ -37,9 +37,13 @@ python walkerTAtools.py
 Once running, you'll be prompted to enter a command. Supported commands include:
 
 64d      → Run Base64 Decode
+
 64url    → Run Base64 URL Splitter
+
 s        → Sanitize a potentially dangerous URL
+
 clr      → Clear the terminal
+
 eX       → Exit the program
 
 Each command routes to its respective logic via the central CLI engine.
