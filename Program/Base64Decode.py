@@ -11,11 +11,13 @@ Description:
     the decoded output, making it easier to analyze encoded data.
 
 imports:
+    @WalkerLog.py
     base64    ---> For Base64 decoding
     termcolor ---> For colored text
 """
 import base64
 from termcolor import colored
+from WalkerLog import *
 
 def decode_base64_string(b64_string):
     try:
@@ -27,8 +29,10 @@ def decode_base64_string(b64_string):
 
 def Base64DecodeMain():
     b64 = input("\n    Paste your Base64-encoded string: ").strip()
+    log(f"\n User Input For Base64 Decode: {b64}")
 
     decoded = decode_base64_string(b64)
+    log(f"\n Decoded Base64 String: {decoded}")
 
     if decoded.startswith("❌"):
         print(colored(f"\n    {decoded}\n", "red"))

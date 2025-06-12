@@ -10,9 +10,11 @@ Description:
 
     This module prompts the user to input a string and returns the Base64-encoded result.
 imports:
+    @WalkerLog.py
     base64    ---> For Base64 encoding
     termcolor ---> For colored text
 """
+from WalkerLog import *
 import base64
 from termcolor import colored
 
@@ -25,8 +27,10 @@ def encode_base64_string(plain_text):
 
 def Base64EncodeMain():
     text = input("\n    Paste the string you want to encode: ").strip()
+    log(f"\n User Input For Base64 Encode: {text}")
 
     encoded = encode_base64_string(text)
+    log(f"\n User Text Base64 Encoded: {encoded}")
 
     if encoded.startswith("❌"):
         print(colored(f"\n    {encoded}\n", "red"))

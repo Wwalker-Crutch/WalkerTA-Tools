@@ -10,9 +10,11 @@ Description:
     malicious or sensitive URLs in logs, reports, or analysis.
 
 imports:
+    @WalkerLog.py
     pyperclip ---> For clipboard manipulation
     termcolor ---> For colored text
 """
+from WalkerLog import *
 import pyperclip
 from termcolor import colored
 
@@ -29,10 +31,13 @@ def bracket_dots(url):
 
 def SanitizeURLMain():
     url = input("\n    Paste a URL to sanitize: ").strip()
+    log(f"\n User Input For URL: {url}")
 
     sanitizedHttp = sanitize_http(url)
+    log(f"\n User Input For SanitizedHTTP: {sanitizedHttp}")
 
     sanitizedHttpandBrackets = bracket_dots(sanitizedHttp)
+    log(f"\n User Input Fully Sanitized: {sanitizedHttpandBrackets}")
 
     print(colored(f"\n    🔒 Sanitized URL: {sanitizedHttpandBrackets}", "green"))
 
