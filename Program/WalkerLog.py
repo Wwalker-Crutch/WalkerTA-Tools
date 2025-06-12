@@ -27,7 +27,7 @@ WALKER_LOG_FILE = "walker_temp.log"
 logger = logging.getLogger("walker_logger")
 logger.setLevel(logging.INFO)
 
-file_handler = logging.FileHandler(WALKER_LOG_FILE, mode="w")
+file_handler = logging.FileHandler(WALKER_LOG_FILE, mode="w", encoding="utf-8")
 formatter = logging.Formatter("%(asctime)s - %(message)s", "%Y-%m-%d %H:%M:%S")
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
