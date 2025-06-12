@@ -29,20 +29,20 @@ def PrettyPrint():
     print("-" * 55)
     print(colored("       🧰  Usage Guide for WalkerTATools  🧰", "yellow"))
     print("s:     Sanitize a potentially dangerous URL")
-    print("64:    Run Base64 Decode")
+    print("64d:   Run Base64 Decode")
     print("64url: Run Base64 URL Splitter")
     print("eX:    Exit the program")
-    print("clear:   Clear the terminal")
+    print("clear: Clear the terminal")
     print("-" * 55)
 
 def PrintUsageError():
     print("❌-------------------------------------------------❌")
     print(colored("              Enter a valid command", "red"))
     print("s:       Sanitize a potentially dangerous URL")
-    print("64:      Command to run Base64 Decode")
+    print("64d:     Command to run Base64 Decode")
     print("64url:   Command to run Base64 URL Splitter")
     print("eX:      Exit the program")
-    print("clear:     Clear the terminal")
+    print("clear:   Clear the terminal")
     print("❌-------------------------------------------------❌")
 
 def ClearTerminal():
@@ -54,7 +54,7 @@ def CommandLineMain():
     while True:
         flag = input("Enter Command: ").strip()
 
-        if flag == "64":
+        if flag == "64d":
             Base64DecodeMain()
         elif flag == "s":
             SanitizeURLMain()
