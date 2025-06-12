@@ -28,7 +28,7 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
   Clears the terminal screen and redisplays the CLI banner.
 
 - **Exit (`eX`)**  
-  Gracefully quits the CLI.
+  Quits the CLI. Prompts for save or discard of a session log of your time working in WalkerTATools
 
 ---
 
@@ -52,3 +52,20 @@ clr      → Clear the terminal
 eX       → Exit the program
 
 Each command routes to its respective logic via the central CLI engine.
+
+📝 Session Logging
+Each time you use WalkerTATools, a temporary session log is generated to record your actions, tool inputs, and outputs.
+
+When you exit the program using the eX command, you’ll be prompted to either save or discard this session log.
+
+If you choose to save it, WalkerTATools will create (or reuse) a folder called WalkerTA_Logs inside your Documents directory (e.g., C:\Users\YourName\Documents\WalkerTA_Logs). This folder will contain timestamped .log files documenting everything you did during that session.
+
+This feature is great for:
+
+Auditing your triage workflow
+
+Referencing past inputs and decoded results
+
+Sharing logs with teammates for review or investigation
+
+If you discard the log, no trace of the session is saved—giving you control over your workflow privacy.
