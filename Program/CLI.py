@@ -17,6 +17,7 @@ imports:
 from Base64Decode import Base64DecodeMain
 from Base64URLSplitter import Base64URLSplitterMain
 from SanitizeURL import SanitizeURLMain
+from Base64Encode import Base64EncodeMain
 from termcolor import colored
 import os
 
@@ -30,6 +31,7 @@ def PrettyPrint():
     print(colored("       🧰  Usage Guide for WalkerTATools  🧰", "yellow"))
     print("s:     Sanitize a potentially dangerous URL")
     print("64d:   Run Base64 Decode")
+    print("64e:   Command to run Base64 Encode")
     print("64url: Run Base64 URL Splitter")
     print("eX:    Exit the program")
     print("clear: Clear the terminal")
@@ -40,6 +42,7 @@ def PrintUsageError():
     print(colored("              Enter a valid command", "red"))
     print("s:       Sanitize a potentially dangerous URL")
     print("64d:     Command to run Base64 Decode")
+    print("64e:     Command to run Base64 Encode")
     print("64url:   Command to run Base64 URL Splitter")
     print("eX:      Exit the program")
     print("clear:   Clear the terminal")
@@ -56,6 +59,8 @@ def CommandLineMain():
 
         if flag == "64d":
             Base64DecodeMain()
+        elif flag == "64e":
+            Base64EncodeMain()
         elif flag == "s":
             SanitizeURLMain()
         elif flag == "64url":
