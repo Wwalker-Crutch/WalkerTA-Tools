@@ -53,6 +53,8 @@ eX       → Exit the program
 
 Each command routes to its respective logic via the central CLI engine.
 
+---
+
 ###📝 Session Logging
 Each time you use WalkerTATools, a temporary session log is generated to record your actions, tool inputs, and outputs.
 
