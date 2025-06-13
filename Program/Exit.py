@@ -17,6 +17,7 @@ from WalkerLog import *
 
 def ExitMain():
     choice = input(colored("\n    📋 Would you like to save this session log? (y/n): ", "yellow")).strip().lower()
+    log("\n[EXIT] User Exited The Program")
 
     if choice == "y":
         saved_path = Walker_log_save()

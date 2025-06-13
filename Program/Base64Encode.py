@@ -27,10 +27,10 @@ def EncodeBase64String(plain_text):
 
 def Base64EncodeMain():
     text = input("\n    Paste the string you want to encode: ").strip()
-    log(f"\n User Input For Base64 Encode: {text}")
+    log(f"\n[INPUT_ENCODE] User Input For Base64 Encode: {text}")
 
     encoded = EncodeBase64String(text)
-    log(f"\n User Text Base64 Encoded: {encoded}")
+    log(f"\n[ENCODE] User Text Base64 Encoded: {encoded}")
 
     if encoded.startswith("❌"):
         print(colored(f"\n    {encoded}\n", "red"))

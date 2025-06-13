@@ -28,17 +28,17 @@ def bracket_dots(url):
 def SanitizeURL(url):
 
     sanitizedHttp = sanitize_http(url)
-    log(f"\n User Input For SanitizedHTTP: {sanitizedHttp}")
+    log(f"\n[SAND1] SanitizedHTTP: {sanitizedHttp}")
 
     sanitizedHttpandBrackets = bracket_dots(sanitizedHttp)
-    log(f"\n User Input Fully Sanitized: {sanitizedHttpandBrackets}")
+    log(f"\n[SAND2] Fully Sanitized: {sanitizedHttpandBrackets}")
 
     return sanitizedHttpandBrackets
 
 
 def SanitizeURLMain():
     url = input("\n    Paste a URL to sanitize: ").strip()
-    log(f"\n User Input For URL: {url}")
+    log(f"\n[INPUT_SAND] User Input For URL: {url}")
 
     sanitizedHttpandBrackets = SanitizeURL(url)
 

@@ -14,12 +14,14 @@ imports:
     @SanitizeURL.py
     @Base64Encode.py
     @Exit.py
+    @Redirect.py
     @WalkerLog.py
     termcolor ---> For colored text
     os -----> to clear and do regular windows commands
 """
 from Base64Decode import Base64DecodeMain
 from Base64URLSplitter import Base64URLSplitterMain
+from Redirect import RedirectMain
 from SanitizeURL import SanitizeURLMain
 from Base64Encode import Base64EncodeMain
 from WalkerLog import *
@@ -42,6 +44,7 @@ def PrettyPrint():
     print("eX:    Exit the program")
     print("clear: Clear the terminal")
     print("usage: Print the usage info")
+    print("r:     Setup a Redirect")
     print("-" * 55)
 
 def PrintUsage():
@@ -54,6 +57,7 @@ def PrintUsage():
     print("eX:      Exit the program")
     print("clear:   Clear the terminal")
     print("usage:   Print the usage info")
+    print("r:       Setup a Redirect")
     print("❌-------------------------------------------------❌")
 
 def PrintUsageError():
@@ -66,6 +70,7 @@ def PrintUsageError():
     print("eX:      Exit the program")
     print("clear:   Clear the terminal")
     print("usage:   Print the usage info")
+    print("r:       Setup a Redirect")
     print("❌-------------------------------------------------❌")
 
 def ClearTerminal():
@@ -73,10 +78,11 @@ def ClearTerminal():
 
 def CommandLineMain():
     PrettyPrint()
+    log(f"\n[START]")
 
     while True:
         flag = input("\nEnter Command: ").strip()
-        log(f"Entered Command: {flag}")
+        log(f"\n[USER] Entered Command: {flag}")
 
         if flag == "64d":
             Base64DecodeMain()
@@ -90,6 +96,8 @@ def CommandLineMain():
             ClearTerminal()
         elif flag == "usage":
             PrintUsage()
+        elif flag == "r":
+            RedirectMain()
         elif flag == "eX":
             ExitMain()
             break

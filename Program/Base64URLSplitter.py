@@ -40,7 +40,7 @@ def IsItBase64(s):
 def SegmentDecode(base64Parts):
     if not base64Parts:
         print(colored("\n    🔎 No Base64-style candidates found.\n", "red"))
-        log("No Base64-style segments found in input URL.")
+        log("\n[NO_SPLIT] No Base64-style segments found in input URL.")
         return
 
     print("\n    🧩 Decoded Segments:\n")
@@ -48,14 +48,14 @@ def SegmentDecode(base64Parts):
         b64_clean = segment.replace('-', '+').replace('_', '/')
         padded = b64_clean + '=' * ((4 - len(b64_clean) % 4) % 4)
         decoded = DecodeBase64String(padded)
-        log(f"Segment {i}: {padded} → {decoded}")
+        log(f"\n[SPLIT] Segment {i}: {padded} → {decoded}")
         print(f"    {i}. {colored(padded, 'yellow')}  ----->  {colored(decoded, 'green')}")
     print()
 
 
 
 def SplitURL(url):
-    parts = re.split(r"[\/\?=&.]+", url)
+    parts = re.split(r"[\/\?=&.#]+", url)
 
     base64Ish = re.compile(r'^[A-Za-z0-9_\-+/]{4,}$')
 
@@ -81,7 +81,7 @@ def URLReplace(base64Parts, url):
             encoded = EncodeBase64String(new_value)
             encoded_url_safe = encoded.replace('+', '-').replace('/', '_').rstrip('=')
             modified_url = modified_url.replace(original, encoded_url_safe)
-            log(f"Replaced {original} with {encoded_url_safe}")
+            log(f"\n[REPLACE] Replaced {original} with {encoded_url_safe}")
             print(f"        ✅  {colored(original, 'red')} → {colored(encoded_url_safe, 'cyan')}"+"\n")
         else:
             print(f"\n        ⚠️  Skipping {colored(original, 'yellow')}"+"\n")
@@ -99,7 +99,7 @@ def URLReplace(base64Parts, url):
 
 def Base64URLSplitterMain():
     url = input("\n    Paste a URL containing Base64-encoded segments: ").strip()
-    log(f"User input for Base64URLSplitter: {url}")
+    log(f"\n[INPUT_SPLIT_REPLACE] User input for Base64URLSplitter: {url}")
 
     base64Parts = SplitURL(url)
 

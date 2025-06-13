@@ -29,10 +29,10 @@ def DecodeBase64String(b64_string):
 
 def Base64DecodeMain():
     b64 = input("\n    Paste your Base64-encoded string: ").strip()
-    log(f"\n User Input For Base64 Decode: {b64}")
+    log(f"\n[INPUT_DECODE] User Input For Base64 Decode: {b64}")
 
     decoded = DecodeBase64String(b64)
-    log(f"\n Decoded Base64 String: {decoded}")
+    log(f"\n[DECODE] Decoded Base64 String: {decoded}")
 
     if decoded.startswith("❌"):
         print(colored(f"\n    {decoded}\n", "red"))
