@@ -30,6 +30,9 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
 - **Exit (`eX`)**  
   Quits the CLI. Prompts for save or discard of a session log of your time working in WalkerTATools
 
+- **Usage (`usage`)**  
+  Prints the usage of WalkerTATools
+
 ---
 
 ### 🛠️ Usage:
