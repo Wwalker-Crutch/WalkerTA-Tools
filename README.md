@@ -18,8 +18,8 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
 - **Base64 Encode (`64e`)**  
   Encodes standard UTF-8 plaintext into Base64 format. Useful for obscuring sensitive strings.
 
-- **Base64 URL Splitter (`64url`)**  
-  Splits and decodes Base64-encoded segments found inside URLs, replacing sensitive elements with safe placeholders (e.g., `YOUR_COMPANY`, `ANON_USER`).
+- **Base64 URL Splitter and Replacer (`64url`)**  
+  Splits and decodes Base64-encoded segments found inside URLs, Optionally allows you to replace sensitive elements with safe placeholders (e.g., `YOUR_COMPANY`, `ANON_USER`).
 
 - **Sanitize URL (`s`)**  
   Rewrites suspicious or dangerous URLs so they are no longer clickable. Converts `http` to `hxxp` and wraps dots (`.`) with brackets like `[.]`.
@@ -29,6 +29,9 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
 
 - **Exit (`eX`)**  
   Quits the CLI. Prompts for save or discard of a session log of your time working in WalkerTATools
+
+- **Usage (`usage`)**  
+  Prints the usage of WalkerTATools
 
 ---
 
@@ -43,7 +46,7 @@ Once running, you'll be prompted to enter a command. Supported commands include:
 
 64e      → Run Base64 Encode
 
-64url    → Run Base64 URL Splitter
+64url    → Run Base64 URL Splitter and Replacer
 
 s        → Sanitize a potentially dangerous URL
 
