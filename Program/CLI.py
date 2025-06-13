@@ -10,7 +10,7 @@ Description:
 
 imports:
     @base64Decode.py
-    @base64URLSplitterMain.py
+    @base64URLSplitter.py
     @SanitizeURL.py
     @Base64Encode.py
     @Exit.py
@@ -38,7 +38,7 @@ def PrettyPrint():
     print("s:     Sanitize a potentially dangerous URL")
     print("64d:   Run Base64 Decode")
     print("64e:   Command to run Base64 Encode")
-    print("64url: Run Base64 URL Splitter")
+    print("64url: Run Base64 URL Splitter and Replacer")
     print("eX:    Exit the program")
     print("clear: Clear the terminal")
     print("usage: Print the usage info")
@@ -50,7 +50,7 @@ def PrintUsage():
     print("s:       Sanitize a potentially dangerous URL")
     print("64d:     Command to run Base64 Decode")
     print("64e:     Command to run Base64 Encode")
-    print("64url:   Command to run Base64 URL Splitter")
+    print("64url:   Command to run Base64 URL Splitter and Replacer")
     print("eX:      Exit the program")
     print("clear:   Clear the terminal")
     print("usage:   Print the usage info")
@@ -62,7 +62,7 @@ def PrintUsageError():
     print("s:       Sanitize a potentially dangerous URL")
     print("64d:     Command to run Base64 Decode")
     print("64e:     Command to run Base64 Encode")
-    print("64url:   Command to run Base64 URL Splitter")
+    print("64url:   Command to run Base64 URL Splitter and Replacer")
     print("eX:      Exit the program")
     print("clear:   Clear the terminal")
     print("usage:   Print the usage info")
@@ -75,7 +75,7 @@ def CommandLineMain():
     PrettyPrint()
 
     while True:
-        flag = input("Enter Command: ").strip()
+        flag = input("\nEnter Command: ").strip()
         log(f"Entered Command: {flag}")
 
         if flag == "64d":

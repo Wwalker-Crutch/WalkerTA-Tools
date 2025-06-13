@@ -19,7 +19,7 @@ import base64
 from termcolor import colored
 from WalkerLog import *
 
-def decode_base64_string(b64_string):
+def DecodeBase64String(b64_string):
     try:
         decoded = base64.b64decode(b64_string)
         return decoded.decode('utf-8')
@@ -31,7 +31,7 @@ def Base64DecodeMain():
     b64 = input("\n    Paste your Base64-encoded string: ").strip()
     log(f"\n User Input For Base64 Decode: {b64}")
 
-    decoded = decode_base64_string(b64)
+    decoded = DecodeBase64String(b64)
     log(f"\n Decoded Base64 String: {decoded}")
 
     if decoded.startswith("❌"):

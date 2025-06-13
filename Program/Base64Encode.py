@@ -18,7 +18,7 @@ from WalkerLog import *
 import base64
 from termcolor import colored
 
-def encode_base64_string(plain_text):
+def EncodeBase64String(plain_text):
     try:
         encoded_bytes = base64.b64encode(plain_text.encode('utf-8'))
         return encoded_bytes.decode('utf-8')
@@ -29,7 +29,7 @@ def Base64EncodeMain():
     text = input("\n    Paste the string you want to encode: ").strip()
     log(f"\n User Input For Base64 Encode: {text}")
 
-    encoded = encode_base64_string(text)
+    encoded = EncodeBase64String(text)
     log(f"\n User Text Base64 Encoded: {encoded}")
 
     if encoded.startswith("❌"):
