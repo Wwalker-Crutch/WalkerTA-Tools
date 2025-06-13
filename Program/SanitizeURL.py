@@ -20,11 +20,7 @@ from termcolor import colored
 
 
 def sanitize_http(url):
-    if url.startswith("https://"):
-        return url.replace("https://", "hxxps://", 1)
-    elif url.startswith("http://"):
-        return url.replace("http://", "hxxp://", 1)
-    return url
+    return url.replace("https://", "hxxps://").replace("http://", "hxxp://")
 
 def bracket_dots(url):
     return url.replace(".", "[.]")
