@@ -39,6 +39,7 @@ def SanitizeURL(url):
 
 
 def SanitizeURLMain():
+    print(colored("\n    *---------------------🧪 Sanitization Zone 🧪--------------------------*", "green"))
     url = input("\n    Paste a URL to sanitize: ").strip()
     log(f"\n[INPUT_SAND] User Input For URL: {url}")
 
@@ -49,3 +50,6 @@ def SanitizeURLMain():
     pyperclip.copy(sanitizedHttpandBrackets)
 
     print(colored("    📋 Sanitized URL copied to clipboard\n", "green"))
+
+    print(colored("\n    *----------------------------------------------------------------------*", "green"))
+

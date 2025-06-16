@@ -26,6 +26,7 @@ def EncodeBase64String(plain_text):
         return f"❌ Encoding Error: {e}"
 
 def Base64EncodeMain():
+    print(colored("\n    *-------------------------📣 Base64 Encoder 📣-------------------------*", "cyan"))
     text = input("\n    Paste the string you want to encode: ").strip()
     log(f"\n[INPUT_ENCODE] User Input For Base64 Encode: {text}")
 
@@ -36,3 +37,6 @@ def Base64EncodeMain():
         print(colored(f"\n    {encoded}\n", "red"))
     else:
         print(colored(f"\n    ✅ Encoded Output: {encoded}\n", "green"))
+
+    print(colored("\n    *----------------------------------------------------------------------*", "cyan"))
+

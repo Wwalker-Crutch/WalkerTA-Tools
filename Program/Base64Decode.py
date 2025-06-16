@@ -28,6 +28,7 @@ def DecodeBase64String(b64_string):
 
 
 def Base64DecodeMain():
+    print(colored("\n    *-------------------------🧭 Base64 Decoder 🧭-------------------------*", "blue"))
     b64 = input("\n    Paste your Base64-encoded string: ").strip()
     log(f"\n[INPUT_DECODE] User Input For Base64 Decode: {b64}")
 
@@ -38,3 +39,5 @@ def Base64DecodeMain():
         print(colored(f"\n    {decoded}\n", "red"))
     else:
         print(colored(f"\n    ✅ Decoded Output: {decoded}\n", "green"))
+
+    print(colored("\n    *----------------------------------------------------------------------*", "blue"))

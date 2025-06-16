@@ -79,7 +79,7 @@ def ExtendRedirectChain():
     print(colored(f"\n    🔄 Redirect Chain Updated:\n\n    {chain_display}\n", "green"))
 
 def RedirectMain():
-    print(colored("\n    *----------------------🚦Redirect Chain Builder🚦----------------------*", "magenta"))
+    print(colored("\n    *-------------------🚦 Redirect Chain Builder 🚦-----------------------*", "magenta"))
     mode = input("\n    New redirect, Extend existing, or Print chains (n/e/p): ").strip().lower()
     if mode == "n":
         NewRedirectChain()
@@ -89,4 +89,6 @@ def RedirectMain():
         PrintRedirectChains()
     else:
         print(colored("    ❌ Invalid option. Returning to menu.", "red"))
+
     print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
+

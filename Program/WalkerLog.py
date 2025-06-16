@@ -28,21 +28,21 @@ logger = logging.getLogger("walker_logger")
 logger.setLevel(logging.INFO)
 
 file_handler = logging.FileHandler(WALKER_LOG_FILE, mode="w", encoding="utf-8")
-formatter = logging.Formatter("%(asctime)s - %(message)s", "%Y-%m-%d %H:%M:%S")
+formatter = logging.Formatter("%(asctime)s - %(message)s\n", "%Y-%m-%d %H:%M:%S")
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
 def log(message):
     logger.info(message)
 
-def make_walker_folder():
+def MakeWalkerFolder():
     documents_folder = os.path.join(os.path.expanduser("~"), "Documents")
     logs_folder = os.path.join(documents_folder, "WalkerTA_Logs")
     os.makedirs(logs_folder, exist_ok=True)
     return logs_folder
 
-def Walker_log_save():
-    logs_folder = make_walker_folder()
+def WalkerLogSave():
+    logs_folder = MakeWalkerFolder()
 
     logger.removeHandler(file_handler)
     file_handler.close()
@@ -54,7 +54,7 @@ def Walker_log_save():
     os.rename(WALKER_LOG_FILE, full_path)
     return full_path
 
-def walker_log_exit():
+def WalkerLogExit():
     logger.removeHandler(file_handler)
     file_handler.close()
     if os.path.exists(WALKER_LOG_FILE):

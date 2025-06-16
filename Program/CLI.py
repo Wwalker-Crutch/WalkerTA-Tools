@@ -27,6 +27,7 @@ from Base64Encode import Base64EncodeMain
 from WalkerLog import *
 from Exit import ExitMain
 from termcolor import colored
+from ExcelHandler import ExcelHandlerMain
 import os
 
 
@@ -98,6 +99,8 @@ def CommandLineMain():
             PrintUsage()
         elif flag == "r":
             RedirectMain()
+        elif flag == "sheet":
+            ExcelHandlerMain
         elif flag == "eX":
             ExitMain()
             break

@@ -98,6 +98,7 @@ def URLReplace(base64Parts, url):
 
 
 def Base64URLSplitterMain():
+    print(colored("\n    *-----------------🗂️ Base64 URL Splitter/Replacer 🗂️-----------------*", "yellow"))
     url = input("\n    Paste a URL containing Base64-encoded segments: ").strip()
     log(f"\n[INPUT_SPLIT_REPLACE] User input for Base64URLSplitter: {url}")
 
@@ -108,3 +109,4 @@ def Base64URLSplitterMain():
         if choice == "y":
             URLReplace(base64Parts, url)
 
+    print(colored("\n    *----------------------------------------------------------------------*", "yellow"))
