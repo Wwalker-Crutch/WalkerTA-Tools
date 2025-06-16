@@ -24,6 +24,9 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
 - **Sanitize URL (`s`)**  
   Rewrites suspicious or dangerous URLs so they are no longer clickable. Converts `http` to `hxxp` and wraps dots (`.`) with brackets like `[.]`.
 
+- **Redirect Chaining (`r`)**  
+  Build and manage redirect chains using sanitized URLs. Create new chains or extend existing ones while keeping links safe and non-clickable for secure analysis and documentation.
+
 - **Clear Terminal (`clr`)**  
   Clears the terminal screen and redisplays the CLI banner.
 
@@ -49,6 +52,8 @@ Once running, you'll be prompted to enter a command. Supported commands include:
 64url    → Run Base64 URL Splitter and Replacer
 
 s        → Sanitize a potentially dangerous URL
+
+r        → Create and edit redirect chains
 
 clr      → Clear the terminal
 
