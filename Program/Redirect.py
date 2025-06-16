@@ -1,7 +1,20 @@
 """
+Name:
+    Redirect
+Author:
+    William Walker @ Crutchfield
+Description:
+        Provides functionality to safely construct and manage redirect chains
+    using sanitized URLs. This tool allows users to create new redirect
+    chains or extend existing ones while ensuring that URLs are displayed
+    in a non-clickable format. Useful for safely documenting and analyzing
+    potentially malicious or sensitive links in a controlled environment.
 
-UNDER CONSTRUCTION
-
+imports:
+    @WalkerLog.py
+    SanitizeURL.py
+    GLOBALS.py
+    termcolor ---> For colored terminal output
 """
 from termcolor import colored
 from SanitizeURL import SanitizeURL
