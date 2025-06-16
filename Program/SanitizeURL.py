@@ -26,6 +26,8 @@ def bracket_dots(url):
     return url.replace(".", "[.]")
 
 def SanitizeURL(url):
+    if url.startswith("hxxp") or "[.]" in url:
+        return url
 
     sanitizedHttp = sanitize_http(url)
     log(f"\n[SAND1] SanitizedHTTP: {sanitizedHttp}")

@@ -15,6 +15,5 @@ imports:
 """
 from CLI import CommandLineMain
 
-
 if __name__ == "__main__":
     CommandLineMain()

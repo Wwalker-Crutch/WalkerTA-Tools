@@ -6,65 +6,74 @@ UNDER CONSTRUCTION
 from termcolor import colored
 from SanitizeURL import SanitizeURL
 from WalkerLog import log
+from GLOBALS import RCHAINLIST
 
-GRAPH = {}
+def PrintRedirectChains():
+    print(colored("\n    📦 Current Redirect Chains:\n", "yellow"))
+    if not RCHAINLIST:
+        print("    (No redirect chains found.)\n")
+        return
+    for idx, chain in enumerate(RCHAINLIST):
+        print(colored(f"    [{idx}]\n    {TraceRedirectChain(chain)}\n", "yellow"))
 
-def trace_redirect_chain(start_url):
-    chain = [start_url]
-    while chain[-1] in GRAPH:
-        chain.append(GRAPH[chain[-1]])
-    return "\n    ------Redirect----->\n    ".join(chain)
+
+def TraceRedirectChain(chain):
+    return "\n        ------Redirect----->\n    ".join(chain)
 
 def NewRedirectChain():
-    print(colored("\n    🔗 Start a new redirect chain\n", "cyan"))
+    PrintRedirectChains()
+    print(colored("    🔗 Start a new redirect chain\n", "cyan"))
     url1 = input("    Enter original URL: ").strip()
     url2 = input("    Enter redirect target: ").strip()
     log(f"\n [INPUT_REDIRECT1] User 1st URL Input {url1}")
     log(f"\n [INPUT_REDIRECT2] User 2nd URL Input {url2}")
 
-
     sanitized1 = SanitizeURL(url1)
     sanitized2 = SanitizeURL(url2)
 
-    GRAPH[sanitized1] = sanitized2
-    log(f"\n [NEW_REDIRECT] Created new redirect: {sanitized1} -> {sanitized2}")
+    new_chain = [sanitized1, sanitized2]
+    RCHAINLIST.append(new_chain)
 
-    chain_display = trace_redirect_chain(sanitized1)
-    print(colored(f"\n    ✅ Redirect Chain Created:\n\n    {chain_display}\n", "green"))
-
+    chain_display = TraceRedirectChain(new_chain)
+    log(f"\n[NEW_REDIRECT] Created new redirect chain:\n    {chain_display}")
+    print(colored(f"\n    ✅  Redirect Chain Created:\n\n    {chain_display}\n", "green"))
 
 def ExtendRedirectChain():
-    print(colored("\n    ➕ Extend a redirect chain from the tail\n", "cyan"))
+    print(colored("\n    ➕ Extend a redirect chain from the last URL\n", "cyan"))
 
-    url1 = input("    Enter the LAST URL in the chain: ").strip()
-    url2 = input("    Enter Redirect URL: ").strip()
+    if not RCHAINLIST:
+        print(colored("    ❌ No redirect chains exist yet.\n", "red"))
+        return
 
-    log(f"\n [INPUT_REDIRECT_EXTEND1] User last URL in chain: {url1}")
-    log(f"\n [INPUT_REDIRECT_EXTEND2] User redirect target: {url2}")
+    PrintRedirectChains()
 
-    sanitized_url1 = SanitizeURL(url1)
-    sanitized_url2 = SanitizeURL(url2)
+    try:
+        index = int(input("\n    Enter the index of the chain to extend: ").strip())
+        if index < 0 or index >= len(RCHAINLIST):
+            raise ValueError
+    except ValueError:
+        print(colored("    ❌ Invalid index. Please enter a valid number.\n", "red"))
+        return
+    url = input("    Enter Redirect URL: ").strip()
+    sanitized_url = SanitizeURL(url)
 
-    GRAPH[sanitized_url1] = sanitized_url2
-    log(f"\n [CHAIN_EXTEND] Appended redirect: {sanitized_url1} → {sanitized_url2}")
+    RCHAINLIST[index].append(sanitized_url)
 
-    root = next((k for k, v in GRAPH.items() if v == sanitized_url2), sanitized_url1)
-    while True:
-        prev = next((k for k, v in GRAPH.items() if v == root), None)
-        if not prev:
-            break
-        root = prev
-    chain_display = trace_redirect_chain(root)
+    chain_display = TraceRedirectChain(RCHAINLIST[index])
+
+    log(f"\n[CHAIN_EXTEND] Updated chain {index}:\n    {chain_display}")
 
     print(colored(f"\n    🔄 Redirect Chain Updated:\n\n    {chain_display}\n", "green"))
 
-
 def RedirectMain():
-    print(colored("\n    🚦 Redirect Chain Builder", "magenta"))
-    mode = input("\n    New redirect or Extend existing? ").strip().lower()
+    print(colored("\n    *----------------------🚦Redirect Chain Builder🚦----------------------*", "magenta"))
+    mode = input("\n    New redirect, Extend existing, or Print chains (n/e/p): ").strip().lower()
     if mode == "n":
         NewRedirectChain()
     elif mode == "e":
         ExtendRedirectChain()
+    elif mode == "p":
+        PrintRedirectChains()
     else:
         print(colored("    ❌ Invalid option. Returning to menu.", "red"))
+    print(colored("\n    *----------------------------------------------------------------------*", "magenta"))

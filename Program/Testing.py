@@ -11,60 +11,67 @@ imports:
 """
 from Base64URLSplitter import *
 from Exit import *
+from Redirect import *
+
+import unittest
+from unittest.mock import patch
 
 
-def test_valid_dual_segment_url():
-    test_url = "https://example.com/track/aHR0cDovL2V4YW1wbGUuY29tL2ZpbGU/?auth=V2lsbGlhbVdhbGtlckBDcnV0Y2hmaWVsZC5jb20"
-    print("\n--- Running: test_valid_dual_segment_url ---")
-    SplitURL(test_url)
+class TestRedirectChainBuilder(unittest.TestCase):
 
-def test_url_with_noise_and_encoded_segment():
-    test_url = "https://site.net?id=123&data=dGhpcyBpcyBhIHRlc3Qgc3RyaW5n==&extra=abc.def.ghi"
-    print("\n--- Running: test_url_with_noise_and_encoded_segment ---")
-    SplitURL(test_url)
+    def setUp(self):
+        GRAPH.clear()
 
-def test_url_with_padding_stripped():
-    test_url = "https://foo.com/u/c29tZXVzZXJAZXhhbXBsZS5jb20"  # "someuser@example.com"
-    print("\n--- Running: test_url_with_padding_stripped ---")
-    SplitURL(test_url)
+    @patch('builtins.input', side_effect=["http://example.com", "http://redirect.com"])
+    def test_new_redirect_chain(self, mock_input):
+        NewRedirectChain()
+        self.assertIn("hxxp://example[.]com", GRAPH)
+        self.assertEqual(GRAPH["hxxp://example[.]com"], "hxxp://redirect[.]com")
 
-def test_url_with_no_base64():
-    test_url = "https://regularsite.com/profile/william-walker/metadata"
-    print("\n--- Running: test_url_with_no_base64 ---")
-    SplitURL(test_url)
+    @patch('builtins.input', side_effect=[
+        "http://example.com", "http://redirect.com",  # New chain
+        "http://redirect.com", "http://final.com"     # Extend chain
+    ])
+    def test_extend_redirect_chain(self, mock_input):
+        NewRedirectChain()
+        ExtendRedirectChain()
+        self.assertEqual(GRAPH["hxxp://redirect[.]com"], "hxxp://final[.]com")
+        chain = trace_redirect_chain("hxxp://example[.]com")
+        self.assertIn("hxxp://final[.]com", chain)
 
-def test_small_base64_segment():
-    test_url = "https://x.com/data/c2ltcGxl"  # "simple"
-    print("\n--- Running: test_small_base64_segment ---")
-    SplitURL(test_url)
+    def test_trace_redirect_chain(self):
+        GRAPH["hxxp://a[.]com"] = "hxxp://b[.]com"
+        GRAPH["hxxp://b[.]com"] = "hxxp://c[.]com"
+        chain = trace_redirect_chain("hxxp://a[.]com")
+        expected = "\n    ------Redirect----->\n    ".join([
+            "hxxp://a[.]com", "hxxp://b[.]com", "hxxp://c[.]com"
+        ])
+        self.assertEqual(chain, expected)
 
-def test_broken_base64_segment():
-    test_url = "https://x.com/id=SGVsbG8$RmF1bHQyQmFzZTY0=="  # contains invalid $
-    print("\n--- Running: test_broken_base64_segment ---")
-    SplitURL(test_url)
-
-def test_url_with_encoded_email_and_path():
-    test_url = "https://download.net/u/V2lsbGlhbUBXaG8uY29t/dmlkZW8="  # William@Who.com + "video"
-    print("\n--- Running: test_url_with_encoded_email_and_path ---")
-    SplitURL(test_url)
-
-def test_url_with_mixed_encoding_styles():
-    test_url = "https://toolbox/api/token/dG9rZW4tLS0_/ZGV0YWlscz9hPXJlcG9ydA=="  # 1 url-safe, 1 padded
-    print("\n--- Running: test_url_with_mixed_encoding_styles ---")
-    SplitURL(test_url)
+    @patch('builtins.input', side_effect=["hxxp://example[.]com", "hxxp://redirect[.]com"])
+    def test_already_sanitized_input(self, mock_input):
+        NewRedirectChain()
+        self.assertIn("hxxp://example[.]com", GRAPH)
+        self.assertEqual(GRAPH["hxxp://example[.]com"], "hxxp://redirect[.]com")
 
 
-def run_all_tests():
-    test_valid_dual_segment_url()
-    test_url_with_noise_and_encoded_segment()
-    test_url_with_padding_stripped()
-    test_url_with_no_base64()
-    test_small_base64_segment()
-    test_broken_base64_segment()
-    test_url_with_encoded_email_and_path()
-    test_url_with_mixed_encoding_styles()
-    ExitMain()
+
+    def test_long_redirect_chain(self):
+        urls = [f"hxxp://site{i}[.]com" for i in range(5)]
+        for i in range(len(urls) - 1):
+            GRAPH[urls[i]] = urls[i + 1]
+        chain = trace_redirect_chain(urls[0])
+        for url in urls:
+            self.assertIn(url, chain)
+
+    @patch('builtins.input', side_effect=["http://nonexistent.com", "http://newtarget.com"])
+    def test_extend_nonexistent_tail(self, mock_input):
+        ExtendRedirectChain()
+        # The graph should remain empty because the base URL doesn't exist
+        self.assertNotIn("hxxp://nonexistent[.]com", GRAPH)
+        self.assertEqual(len(GRAPH), 0)
 
 
-if __name__ == "__main__":
-    run_all_tests()
+if __name__ == '__main__':
+    unittest.main()
+
