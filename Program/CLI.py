@@ -16,6 +16,7 @@ imports:
     @Exit.py
     @Redirect.py
     @WalkerLog.py
+    @ExcelHandler.py
     termcolor ---> For colored text
     os -----> to clear and do regular windows commands
 """
@@ -46,6 +47,7 @@ def PrettyPrint():
     print("clear: Clear the terminal")
     print("usage: Print the usage info")
     print("r:     Setup a Redirect")
+    print("sheet: Setup a excel sheet with info from the program")
     print("-" * 55)
 
 def PrintUsage():
@@ -59,6 +61,7 @@ def PrintUsage():
     print("clear:   Clear the terminal")
     print("usage:   Print the usage info")
     print("r:       Setup a Redirect")
+    print("sheet:   Setup a excel sheet with info from the program")
     print("❌-------------------------------------------------❌")
 
 def PrintUsageError():
@@ -72,6 +75,7 @@ def PrintUsageError():
     print("clear:   Clear the terminal")
     print("usage:   Print the usage info")
     print("r:       Setup a Redirect")
+    print("sheet:   Setup a excel sheet with info from the program")
     print("❌-------------------------------------------------❌")
 
 def ClearTerminal():
@@ -100,7 +104,7 @@ def CommandLineMain():
         elif flag == "r":
             RedirectMain()
         elif flag == "sheet":
-            ExcelHandlerMain
+            ExcelHandlerMain()
         elif flag == "eX":
             ExitMain()
             break
