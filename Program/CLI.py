@@ -81,9 +81,20 @@ def PrintUsageError():
 def ClearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
+def PreProcessing():
+    tools_root = MakeWalkerToolsFolder()
+    log(f"[TOOLS_FOLDER] Created (or confirmed) root tools folder at: {tools_root}")
+
+
+
+    return
+
+
 def CommandLineMain():
     PrettyPrint()
     log(f"\n[START]")
+
+    PreProcessing()
 
     while True:
         flag = input("\nEnter Command: ").strip()

@@ -21,6 +21,7 @@ Imports:
 import logging
 import os
 from datetime import datetime
+from GLOBALS import *
 
 WALKER_LOG_FILE = "walker_temp.log"
 
@@ -35,14 +36,15 @@ logger.addHandler(file_handler)
 def log(message):
     logger.info(message)
 
-def MakeWalkerFolder():
-    documents_folder = os.path.join(os.path.expanduser("~"), "Documents")
-    logs_folder = os.path.join(documents_folder, "WalkerTA_Logs")
+def MakeWalkerLogFolder():
+    walker_root = MakeWalkerToolsFolder()
+    logs_folder = os.path.join(walker_root, "WalkerTALogs")
     os.makedirs(logs_folder, exist_ok=True)
+    log(f"[LOG_FOLDER] Created (or confirmed) logs folder at: {logs_folder}")
     return logs_folder
 
 def WalkerLogSave():
-    logs_folder = MakeWalkerFolder()
+    logs_folder = MakeWalkerLogFolder()
 
     logger.removeHandler(file_handler)
     file_handler.close()
