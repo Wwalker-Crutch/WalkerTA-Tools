@@ -36,7 +36,7 @@ def MakeWalkerExcelFolder():
     excel_folder = os.path.join(walker_root, "WalkerTAExcel")
     os.makedirs(excel_folder, exist_ok=True)
 
-    log(f"[EXCEL_FOLDER] Created (or confirmed) Excel folder at: {excel_folder}")
+    log(f"\n[EXCEL_FOLDER] Created (or confirmed) Excel folder at: {excel_folder}")
     return excel_folder
 
 
@@ -92,7 +92,7 @@ def ManualExcelLogging():
     save_path = os.path.join(folder, filename)
     wb.save(save_path)
 
-    log(f"[EXCEL_LOGGING] Manual sheet saved to: {save_path}")
+    log(f"\n[EXCEL_LOGGING] Manual sheet saved to: {save_path}")
     print(colored(f"\n    ✅ Excel sheet saved to: {save_path}\n", "green"))
 
 

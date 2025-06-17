@@ -25,6 +25,7 @@ from Base64URLSplitter import Base64URLSplitterMain
 from Redirect import RedirectMain
 from SanitizeURL import SanitizeURLMain
 from Base64Encode import Base64EncodeMain
+from SHA256Sum import SHA256SumMain
 from WalkerLog import *
 from Exit import ExitMain
 from termcolor import colored
@@ -42,6 +43,7 @@ def PrettyPrint():
     print("s:     Sanitize a potentially dangerous URL")
     print("64d:   Run Base64 Decode")
     print("64e:   Command to run Base64 Encode")
+    print("256:   Run SHA256Sum on a File or Plaintext, Creates Hash")
     print("64url: Run Base64 URL Splitter and Replacer")
     print("eX:    Exit the program")
     print("clear: Clear the terminal")
@@ -56,6 +58,7 @@ def PrintUsage():
     print("s:       Sanitize a potentially dangerous URL")
     print("64d:     Command to run Base64 Decode")
     print("64e:     Command to run Base64 Encode")
+    print("256:     Run SHA256Sum on a File or Plaintext, Creates Hash")
     print("64url:   Command to run Base64 URL Splitter and Replacer")
     print("eX:      Exit the program")
     print("clear:   Clear the terminal")
@@ -70,6 +73,7 @@ def PrintUsageError():
     print("s:       Sanitize a potentially dangerous URL")
     print("64d:     Command to run Base64 Decode")
     print("64e:     Command to run Base64 Encode")
+    print("256:     Run SHA256Sum on a File or Plaintext, Creates Hash")
     print("64url:   Command to run Base64 URL Splitter and Replacer")
     print("eX:      Exit the program")
     print("clear:   Clear the terminal")
@@ -83,7 +87,7 @@ def ClearTerminal():
 
 def PreProcessing():
     tools_root = MakeWalkerToolsFolder()
-    log(f"[TOOLS_FOLDER] Created (or confirmed) root tools folder at: {tools_root}")
+    log(f"\n[TOOLS_FOLDER] Created (or confirmed) root tools folder at: {tools_root}")
 
 
 
@@ -116,6 +120,8 @@ def CommandLineMain():
             RedirectMain()
         elif flag == "sheet":
             ExcelHandlerMain()
+        elif flag == "256":
+            SHA256SumMain()
         elif flag == "eX":
             ExitMain()
             break
