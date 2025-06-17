@@ -90,6 +90,7 @@ def URLReplace(base64Parts, url):
 
     sanitized = SanitizeURL(modified_url)
     print(colored(f"        🔒 Sanitized URL: {sanitized}", "green"))
+    log(f"[REPLACE] Final modified URL: {sanitized}")
 
     pyperclip.copy(sanitized)
     print(colored("        📋 Sanitized URL copied to clipboard", "green"))

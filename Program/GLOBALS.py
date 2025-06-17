@@ -6,7 +6,7 @@ Author:
     William Walker @ Crutchfield
 
 Description:
-        Contains Global Variables
+        Contains Global Variables and various Global Functions
 """
 import os
 
@@ -21,5 +21,4 @@ def MakeWalkerToolsFolder():
     tools_root = os.path.join(documents_folder, "WalkerTATools")
 
     os.makedirs(tools_root, exist_ok=True)
-
     return tools_root

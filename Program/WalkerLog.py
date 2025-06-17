@@ -37,6 +37,7 @@ def log(message):
 
 def MakeWalkerLogFolder():
     walker_root = MakeWalkerToolsFolder()
+
     logs_folder = os.path.join(walker_root, "WalkerTALogs")
     os.makedirs(logs_folder, exist_ok=True)
     log(f"[LOG_FOLDER] Created (or confirmed) logs folder at: {logs_folder}")

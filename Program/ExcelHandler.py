@@ -15,6 +15,7 @@ from GLOBALS import *
 import os
 from openpyxl import load_workbook
 from datetime import datetime
+from LogReader import *
 
 
 def GetTemplatePath():
