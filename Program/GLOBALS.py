@@ -12,6 +12,9 @@ import os
 
 """GLOBALS FOR ENTIRE PROGRAM"""
 RCHAINLIST = []
+WALKER_LOG_FILE = "walker_temp.log"
+
+
 
 def MakeWalkerToolsFolder():
     documents_folder = os.path.join(os.path.expanduser("~"), "Documents")

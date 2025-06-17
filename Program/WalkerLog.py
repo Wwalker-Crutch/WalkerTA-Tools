@@ -23,7 +23,6 @@ import os
 from datetime import datetime
 from GLOBALS import *
 
-WALKER_LOG_FILE = "walker_temp.log"
 
 logger = logging.getLogger("walker_logger")
 logger.setLevel(logging.INFO)
