@@ -18,6 +18,9 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
 - **Base64 Encode (`64e`)**  
   Encodes standard UTF-8 plaintext into Base64 format. Useful for obscuring sensitive strings.
 
+- **SHA256SUM (`256`)**  
+  Hashes a file or Plaintext using SHA256 checksum.
+
 - **Base64 URL Splitter and Replacer (`64url`)**  
   Splits and decodes Base64-encoded segments found inside URLs, Optionally allows you to replace sensitive elements with safe placeholders (e.g., `YOUR_COMPANY`, `ANON_USER`).
 
@@ -48,6 +51,8 @@ Once running, you'll be prompted to enter a command. Supported commands include:
 64d      → Run Base64 Decode
 
 64e      → Run Base64 Encode
+
+256      → Run SHA256 CheckSum
 
 64url    → Run Base64 URL Splitter and Replacer
 
