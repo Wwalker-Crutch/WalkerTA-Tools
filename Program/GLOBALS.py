@@ -13,7 +13,8 @@ import os
 """GLOBALS FOR ENTIRE PROGRAM"""
 RCHAINLIST = []
 WALKER_LOG_FILE = "walker_temp.log"
-
+SENDER_ADDRESS = ""
+FOUND_EMAILS = []
 
 
 def MakeWalkerToolsFolder():

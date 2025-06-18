@@ -40,7 +40,7 @@ def MakeWalkerLogFolder():
 
     logs_folder = os.path.join(walker_root, "WalkerTALogs")
     os.makedirs(logs_folder, exist_ok=True)
-    log(f"[LOG_FOLDER] Created (or confirmed) logs folder at: {logs_folder}")
+    log(f"\n[LOG_FOLDER] Created (or confirmed) logs folder at: {logs_folder}")
     return logs_folder
 
 def WalkerLogSave():

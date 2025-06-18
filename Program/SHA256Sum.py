@@ -4,7 +4,7 @@ Name:
 Author:
     William Walker @ Crutchfield
 Description:
-
+        Module for generating SHA256 hashes from either plaintext input or a selected file.
 imports:
     @WalkerLog.py
     termcolor   ---> For colored console output

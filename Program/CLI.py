@@ -30,6 +30,7 @@ from WalkerLog import *
 from Exit import ExitMain
 from termcolor import colored
 from ExcelHandler import ExcelHandlerMain
+from EmailDump import EmailDumpMain
 import os
 
 
@@ -50,6 +51,7 @@ def PrettyPrint():
     print("usage: Print the usage info")
     print("r:     Setup a Redirect")
     print("sheet: Setup a excel sheet with info from the program")
+    print("e:     Email Paster and Collector")
     print("-" * 55)
 
 def PrintUsage():
@@ -65,6 +67,7 @@ def PrintUsage():
     print("usage:   Print the usage info")
     print("r:       Setup a Redirect")
     print("sheet:   Setup a excel sheet with info from the program")
+    print("e:       Email Paster and Collector")
     print("❌-------------------------------------------------❌")
 
 def PrintUsageError():
@@ -80,6 +83,7 @@ def PrintUsageError():
     print("usage:   Print the usage info")
     print("r:       Setup a Redirect")
     print("sheet:   Setup a excel sheet with info from the program")
+    print("e:       Email Paster and Collector")
     print("❌-------------------------------------------------❌")
 
 def ClearTerminal():
@@ -122,6 +126,8 @@ def CommandLineMain():
             ExcelHandlerMain()
         elif flag == "256":
             SHA256SumMain()
+        elif flag == "e":
+            EmailDumpMain()
         elif flag == "eX":
             ExitMain()
             break

@@ -69,7 +69,6 @@ def SplitURL(url):
 def URLReplace(base64Parts, url):
     modified_url = url
 
-
     print(colored("\n        *-----------------🔄Base64 Replacement Mode🔄-----------------*\n", "cyan"))
     for original in base64Parts:
         padded = original + '=='
