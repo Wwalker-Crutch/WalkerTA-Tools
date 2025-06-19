@@ -7,7 +7,7 @@ William Walker @ Crutchfield
 
 ### 📦 Description
 
-**WalkerTATools** is a modular command-line triage and analysis utility engineered to streamline and strengthen security workflows—from initial threat assessment all the way to structured MISP reporting. Built with both flexibility and clarity in mind, this toolkit empowers analysts, researchers, and SOC operators to quickly extract, decode, sanitize, and organize key indicators of compromise (IOCs) during real-time investigations or retrospective reporting.
+**WalkerTATools** is a modular command-line triage and analysis utility engineered to streamline and strengthen security workflows, from initial threat assessment all the way to structured MISP reporting. Built with both flexibility and clarity in mind, this toolkit empowers analysts, researchers, and SOC operators to quickly extract, decode, sanitize, and organize key indicators of compromise (IOCs) during real-time investigations or retrospective reporting.
 
 It brings together a set of focused tools designed to handle:
 
