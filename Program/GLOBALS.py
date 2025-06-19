@@ -15,7 +15,12 @@ RCHAINLIST = []
 WALKER_LOG_FILE = "walker_temp.log"
 SENDER_ADDRESS = ""
 FOUND_EMAILS = []
-
+FILES = []
+SENDER_RETURN_PATH = ""
+SENDER_FROM = ""
+URL_LIST = []
+MAL_URL = ""
+POST_URL = ""
 
 def MakeWalkerToolsFolder():
     documents_folder = os.path.join(os.path.expanduser("~"), "Documents")

@@ -45,6 +45,7 @@ def SHA256FromFile():
     print(colored(f"\n    📋 {formatted}", "green"))
     log(f"\n[SHA256] File hashed: {filename}")
     log(f"\n[SHA256] {formatted}")
+    return formatted
 
 
 def SHA256FromPlaintext():
@@ -64,6 +65,7 @@ def SHA256FromPlaintext():
     print(colored(f"\n    📋 {formatted}", "green"))
     log(f"\n[SHA256] Plaintext hashed: {text}")
     log(f"\n[SHA256] {formatted}")
+    return formatted
 
 def SHA256SumMain():
     print(colored("\n    *---------------------------💫 SHA256SUM 💫----------------------------*", "yellow"))

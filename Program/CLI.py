@@ -17,6 +17,7 @@ imports:
     @Redirect.py
     @WalkerLog.py
     @ExcelHandler.py
+    @EmailSpecs.py
     termcolor ---> For colored text
     os -----> to clear and do regular windows commands
 """
@@ -31,60 +32,92 @@ from Exit import ExitMain
 from termcolor import colored
 from ExcelHandler import ExcelHandlerMain
 from EmailDump import EmailDumpMain
+from FileDump import FileDumpMain
+from URLDump import URLDumpMain
 import os
 
 
 def PrettyPrint():
-    print("\n" + "*" * 53)
-    print(colored("   🛠️  Welcome to WalkerTATools — CLI Edition  🛠️ ", "yellow"))
-    print(colored("       Created by William Walker @ Crutchfield", "yellow"))
-    print("*" * 53)
-    print("-" * 55)
-    print(colored("       🧰  Usage Guide for WalkerTATools  🧰", "yellow"))
-    print("s:     Sanitize a potentially dangerous URL")
-    print("64d:   Run Base64 Decode")
-    print("64e:   Command to run Base64 Encode")
-    print("256:   Run SHA256Sum on a File or Plaintext, Creates Hash")
-    print("64url: Run Base64 URL Splitter and Replacer")
-    print("eX:    Exit the program")
-    print("clear: Clear the terminal")
-    print("usage: Print the usage info")
-    print("r:     Setup a Redirect")
-    print("sheet: Setup a excel sheet with info from the program")
-    print("e:     Email Paster and Collector")
-    print("-" * 55)
+    print("\n" + "*" * 65)
+    print(colored("     🛠️  Welcome to WalkerTATools — CLI Edition  🛠️", "yellow"))
+    print(colored("        Created by William Walker @ Crutchfield", "yellow"))
+    print("*" * 65)
+    print(colored("-" * 90, "yellow"))
+    print(colored("                   🧰  Usage Guide for WalkerTATools  🧰", "yellow"))
+    print()
+    print(colored("     *--------------------🧨 SINGLE USE COMMANDS 🧨----------------------*", "blue"))
+    print("         s:        Sanitize a potentially dangerous URL")
+    print("         64d:      Run Base64 Decode")
+    print("         64e:      Command to run Base64 Encode")
+    print("         256:      Run SHA256Sum on a File or Plaintext, Creates Hash")
+    print("         64url:    Run Base64 URL Splitter and Replacer")
+    print("         r:        Setup a Redirect")
+    print()
+    print(colored("     *----------------------🎯 MISP REPORTING 🎯------------------------*", "blue"))
+    print("         ed:       Email Paster and Collector")
+    print("         fd:       File Paster and Collector")
+    print("         ud:       URL Paster and Collector")
+    print("         sheet:    Setup an Excel sheet with info from the program, EML, or manual")
+    print()
+    print(colored("     *----------------------💻 PROGRAM COMMANDS 💻-----------------------*", "blue"))
+    print("         eX:       Exit the program")
+    print("         clear:    Clear the terminal")
+    print("         usage:    Print the usage info")
+    print()
+
+    print(colored("-" * 90, "yellow"))
 
 def PrintUsage():
-    print("❌-------------------------------------------------❌")
-    print(colored("            use one of these commands", "yellow"))
-    print("s:       Sanitize a potentially dangerous URL")
-    print("64d:     Command to run Base64 Decode")
-    print("64e:     Command to run Base64 Encode")
-    print("256:     Run SHA256Sum on a File or Plaintext, Creates Hash")
-    print("64url:   Command to run Base64 URL Splitter and Replacer")
-    print("eX:      Exit the program")
-    print("clear:   Clear the terminal")
-    print("usage:   Print the usage info")
-    print("r:       Setup a Redirect")
-    print("sheet:   Setup a excel sheet with info from the program")
-    print("e:       Email Paster and Collector")
-    print("❌-------------------------------------------------❌")
+    print(colored("\n*" + "-" * 88 + "*", "blue"))
+    print(colored("                   📘  Usage Help for WalkerTATools  📘", "yellow"))
+    print()
+    print(colored("     *--------------------🧨 SINGLE USE COMMANDS 🧨----------------------*", "blue"))
+    print("         s:        Sanitize a potentially dangerous URL")
+    print("         64d:      Run Base64 Decode")
+    print("         64e:      Command to run Base64 Encode")
+    print("         256:      Run SHA256Sum on a File or Plaintext, Creates Hash")
+    print("         64url:    Run Base64 URL Splitter and Replacer")
+    print("         r:        Setup a Redirect")
+    print()
+    print(colored("     *----------------------🎯 MISP REPORTING 🎯------------------------*", "blue"))
+    print("         ed:       Email Paster and Collector")
+    print("         fd:       File Paster and Collector")
+    print("         ud:       URL Paster and Collector")
+    print("         sheet:    Setup an Excel sheet with info from the program, EML, or manual")
+    print()
+    print(colored("     *----------------------💻 PROGRAM COMMANDS 💻-----------------------*", "blue"))
+    print("         eX:       Exit the program")
+    print("         clear:    Clear the terminal")
+    print("         usage:    Print the usage info")
+    print()
+    print(colored("\n*" + "-" * 88 + "*", "blue"))
+
 
 def PrintUsageError():
-    print("❌-------------------------------------------------❌")
-    print(colored("              Enter a valid command", "red"))
-    print("s:       Sanitize a potentially dangerous URL")
-    print("64d:     Command to run Base64 Decode")
-    print("64e:     Command to run Base64 Encode")
-    print("256:     Run SHA256Sum on a File or Plaintext, Creates Hash")
-    print("64url:   Command to run Base64 URL Splitter and Replacer")
-    print("eX:      Exit the program")
-    print("clear:   Clear the terminal")
-    print("usage:   Print the usage info")
-    print("r:       Setup a Redirect")
-    print("sheet:   Setup a excel sheet with info from the program")
-    print("e:       Email Paster and Collector")
-    print("❌-------------------------------------------------❌")
+    print(colored("\n*" + "-" * 88 + "*", "red"))
+    print(colored("                ❌  Invalid Command — Please Try Again  ❌", "red"))
+    print()
+    print(colored("     *--------------------🧨 SINGLE USE COMMANDS 🧨----------------------*", "blue"))
+    print("         s:        Sanitize a potentially dangerous URL")
+    print("         64d:      Run Base64 Decode")
+    print("         64e:      Command to run Base64 Encode")
+    print("         256:      Run SHA256Sum on a File or Plaintext, Creates Hash")
+    print("         64url:    Run Base64 URL Splitter and Replacer")
+    print("         r:        Setup a Redirect")
+    print()
+    print(colored("     *----------------------🎯 MISP REPORTING 🎯------------------------*", "blue"))
+    print("         ed:       Email Paster and Collector")
+    print("         fd:       File Paster and Collector")
+    print("         ud:       URL Paster and Collector")
+    print("         sheet:    Setup an Excel sheet with info from the program, EML, or manual")
+    print()
+    print(colored("     *----------------------💻 PROGRAM COMMANDS 💻-----------------------*", "blue"))
+    print("         eX:       Exit the program")
+    print("         clear:    Clear the terminal")
+    print("         usage:    Print the usage info")
+    print()
+    print(colored("\n*" + "-" * 88 + "*", "red"))
+
 
 def ClearTerminal():
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -92,8 +125,6 @@ def ClearTerminal():
 def PreProcessing():
     tools_root = MakeWalkerToolsFolder()
     log(f"\n[TOOLS_FOLDER] Created (or confirmed) root tools folder at: {tools_root}")
-
-
 
     return
 
@@ -126,10 +157,14 @@ def CommandLineMain():
             ExcelHandlerMain()
         elif flag == "256":
             SHA256SumMain()
-        elif flag == "e":
+        elif flag == "ed":
             EmailDumpMain()
+        elif flag == "fd":
+            FileDumpMain()
+        elif flag == "ud":
+            URLDumpMain()
         elif flag == "eX":
-            ExitMain()
-            break
-        else:
+            if ExitMain():
+                break
+    else:
             PrintUsageError()
