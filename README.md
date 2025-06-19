@@ -17,7 +17,7 @@ It brings together a set of focused tools designed to handle:
 - 📊 **Session logging** to provide a tamper-free audit trail of analyst actions, choices, and findings  
 - 📁 **Export-ready Excel sheet creation** from collected artifacts, reducing the manual prep time needed to convert findings into reportable formats  
 
-**WalkerTATools** acts as your CLI-sidekick—guiding you through evidence processing and helping ensure every string, email, URL, and file hash is accounted for, safely documented, and MISP-ready.
+**WalkerTATools** acts as your CLI-sidekick, guiding you through evidence processing and helping ensure every string, email, URL, and file hash is accounted for, safely documented, and MISP-ready.
 
 ---
 ### 🧩 Feature Categories:
