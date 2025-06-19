@@ -21,6 +21,9 @@ SENDER_FROM = ""
 URL_LIST = []
 MAL_URL = ""
 POST_URL = ""
+SENDER_IP = ""
+IP_LIST = {}
+
 
 def MakeWalkerToolsFolder():
     documents_folder = os.path.join(os.path.expanduser("~"), "Documents")

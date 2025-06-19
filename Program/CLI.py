@@ -34,15 +34,17 @@ from ExcelHandler import ExcelHandlerMain
 from EmailDump import EmailDumpMain
 from FileDump import FileDumpMain
 from URLDump import URLDumpMain
+from IPDump import IPDumpMain
 import os
+import time
 
 
 def PrettyPrint():
-    print("\n" + "*" * 65)
-    print(colored("     🛠️  Welcome to WalkerTATools — CLI Edition  🛠️", "yellow"))
-    print(colored("        Created by William Walker @ Crutchfield", "yellow"))
-    print("*" * 65)
-    print(colored("-" * 90, "yellow"))
+    print("\n      " + "*" * 65)
+    print(colored("              🛠️  Welcome to WalkerTATools CLI Edition  🛠️", "yellow"))
+    print(colored("                 Created by William Walker, @ Crutchfield", "yellow"))
+    print("      "+"*" * 65)
+    print(colored("-" * 85, "yellow"))
     print(colored("                   🧰  Usage Guide for WalkerTATools  🧰", "yellow"))
     print()
     print(colored("     *--------------------🧨 SINGLE USE COMMANDS 🧨----------------------*", "blue"))
@@ -53,10 +55,11 @@ def PrettyPrint():
     print("         64url:    Run Base64 URL Splitter and Replacer")
     print("         r:        Setup a Redirect")
     print()
-    print(colored("     *----------------------🎯 MISP REPORTING 🎯------------------------*", "blue"))
+    print(colored("     *-------------------------🎯 REPORTING 🎯---------------------------*", "blue"))
     print("         ed:       Email Paster and Collector")
     print("         fd:       File Paster and Collector")
     print("         ud:       URL Paster and Collector")
+    print("         id:       IP Paster and Collector")
     print("         sheet:    Setup an Excel sheet with info from the program, EML, or manual")
     print()
     print(colored("     *----------------------💻 PROGRAM COMMANDS 💻-----------------------*", "blue"))
@@ -65,7 +68,7 @@ def PrettyPrint():
     print("         usage:    Print the usage info")
     print()
 
-    print(colored("-" * 90, "yellow"))
+    print(colored("-" * 85, "yellow"))
 
 def PrintUsage():
     print(colored("\n*" + "-" * 88 + "*", "blue"))
@@ -79,10 +82,11 @@ def PrintUsage():
     print("         64url:    Run Base64 URL Splitter and Replacer")
     print("         r:        Setup a Redirect")
     print()
-    print(colored("     *----------------------🎯 MISP REPORTING 🎯------------------------*", "blue"))
+    print(colored("     *-------------------------🎯 REPORTING 🎯---------------------------*", "blue"))
     print("         ed:       Email Paster and Collector")
     print("         fd:       File Paster and Collector")
     print("         ud:       URL Paster and Collector")
+    print("         id:       IP Paster and Collector")
     print("         sheet:    Setup an Excel sheet with info from the program, EML, or manual")
     print()
     print(colored("     *----------------------💻 PROGRAM COMMANDS 💻-----------------------*", "blue"))
@@ -105,10 +109,11 @@ def PrintUsageError():
     print("         64url:    Run Base64 URL Splitter and Replacer")
     print("         r:        Setup a Redirect")
     print()
-    print(colored("     *----------------------🎯 MISP REPORTING 🎯------------------------*", "blue"))
+    print(colored("     *-------------------------🎯 REPORTING 🎯---------------------------*", "blue"))
     print("         ed:       Email Paster and Collector")
     print("         fd:       File Paster and Collector")
     print("         ud:       URL Paster and Collector")
+    print("         id:       IP Paster and Collector")
     print("         sheet:    Setup an Excel sheet with info from the program, EML, or manual")
     print()
     print(colored("     *----------------------💻 PROGRAM COMMANDS 💻-----------------------*", "blue"))
@@ -163,8 +168,13 @@ def CommandLineMain():
             FileDumpMain()
         elif flag == "ud":
             URLDumpMain()
+        elif flag == "id":
+            IPDumpMain()
         elif flag == "eX":
             if ExitMain():
                 break
-    else:
+        else:
             PrintUsageError()
+
+
+

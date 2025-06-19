@@ -15,8 +15,5 @@ Imports:
 """
 
 
-
-
-
 def GlobalCheckerMain():
     return

@@ -35,6 +35,6 @@ def ExitMain():
         print(colored("\n    🗑️ Session log discarded.", "red"))
 
     print(colored("\n    👋 Exiting WalkerTATools. Goodbye!\n", "red"))
-    print(colored("\n    *----------------------------------------------------------------------*", "red"))
+    print(colored("    *----------------------------------------------------------------------*\n", "red"))
 
     return True
