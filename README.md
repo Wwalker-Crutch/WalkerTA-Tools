@@ -41,15 +41,18 @@ It brings together a set of focused tools designed to handle:
 - **Redirect Chaining (`r`)**  
   Build and manage redirect chains using sanitized URLs. Create new chains or extend existing ones while keeping links safe and non-clickable for secure analysis and documentation.
 
-#### *🎯 MISP REPORTING*
+#### *🎯 REPORTING*
 - **Email Dump (`ed`)**  
   Collect and dedicate emails toward being a sender. Place for email collection. Used later in MISP report sheet guided mode.
 
 - **File Dump (`fd`)**  
-  Collect file names and associated SHA256 hashes for IOC reference and export. Used later in MISP report sheet guided mode
+  Collect file names and associated SHA256 hashes for IOC reference and export. Used later in MISP report sheet guided mode.
 
 - **URL Dump (`ud`)**  
-  Collect and sanitize various malicious and credential-harvesting URLs for MISP-ready formatting. Used later in MISP report sheet guided mode
+  Collect and sanitize various malicious and credential-harvesting URLs for MISP-ready formatting. Used later in MISP report sheet guided mode.
+
+- **IP Dump (`id`)**  
+  Collect and label IP addresses associated with suspicious senders, indicators, or websites. Used later in MISP report sheet guided mode.
 
 - **Excel Sheet Builder (`sheet`)**  
   Build MISP-ready Excel sheets using collected IOCs and metadata for report output.
@@ -83,7 +86,8 @@ python walkerTAtools.py
 #### *🎯 MISP REPORTING*
 - `ed`  → Email Paster and Collector  
 - `fd`  → File Paster and Collector  
-- `ud`  → URL Paster and Collector  
+- `ud`  → URL Paster and Collector
+- `id`  → IP Paster and Collector
 - `sheet` → Build MISP-ready Excel sheet from collected data  
 
 #### *💻 PROGRAM COMMANDS*
