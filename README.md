@@ -30,6 +30,9 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
 - **Redirect Chaining (`r`)**  
   Build and manage redirect chains using sanitized URLs. Create new chains or extend existing ones while keeping links safe and non-clickable for secure analysis and documentation.
 
+- **Email Dump (`e`)**  
+  Collect and dedicate emails towards being a sender. Place for Email Collection, Important for later use in MISP report sheet guided mode. 
+
 - **Clear Terminal (`clr`)**  
   Clears the terminal screen and redisplays the CLI banner.
 
@@ -55,6 +58,8 @@ Once running, you'll be prompted to enter a command. Supported commands include:
 256      → Run SHA256 CheckSum
 
 64url    → Run Base64 URL Splitter and Replacer
+
+e        → Email Collection and Dedication
 
 s        → Sanitize a potentially dangerous URL
 
