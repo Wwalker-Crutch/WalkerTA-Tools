@@ -5,12 +5,26 @@ William Walker @ Crutchfield
 
 ---
 
-### 📦 Description:
-WalkerTATools is a modular command-line toolkit built to assist in decoding, parsing, and safely presenting potentially dangerous strings and URLs during research, analysis, and triage workflow
+### 📦 Description
+
+**WalkerTATools** is a modular command-line triage and analysis utility engineered to streamline and strengthen security workflows—from initial threat assessment all the way to structured MISP reporting. Built with both flexibility and clarity in mind, this toolkit empowers analysts, researchers, and SOC operators to quickly extract, decode, sanitize, and organize key indicators of compromise (IOCs) during real-time investigations or retrospective reporting.
+
+It brings together a set of focused tools designed to handle:
+
+- 🧨 **Single-use analysis tasks** like Base64 decoding/encoding, SHA256 hashing, redirect chain tracing, and advanced URL sanitization  
+- 🛡️ **Malware triage workflows**, including safe decoding and redaction of suspicious payloads embedded in URLs or files  
+- 📬 **Email, file, and URL IOC collection** with structured prompts that prepare entries for direct injection into MISP or intelligence reports  
+- 📊 **Session logging** to provide a tamper-free audit trail of analyst actions, choices, and findings  
+- 📁 **Export-ready Excel sheet creation** from collected artifacts, reducing the manual prep time needed to convert findings into reportable formats  
+
+**WalkerTATools** acts as your CLI-sidekick—guiding you through evidence processing and helping ensure every string, email, URL, and file hash is accounted for, safely documented, and MISP-ready.
 
 ---
+### 🧩 Feature Categories:
 
-### 🚀 Features:
+#### *🧨 SINGLE USE COMMANDS*
+- **Sanitize URL (`s`)**  
+  Rewrites suspicious or dangerous URLs so they are no longer clickable. Converts `http` to `hxxp` and wraps dots (`.`) with brackets like `[.]`.
 
 - **Base64 Decode (`64d`)**  
   Decodes standard Base64-encoded strings for analysis or cleanup. Accepts both padded and unpadded input.
@@ -22,70 +36,62 @@ WalkerTATools is a modular command-line toolkit built to assist in decoding, par
   Hashes a file or Plaintext using SHA256 checksum.
 
 - **Base64 URL Splitter and Replacer (`64url`)**  
-  Splits and decodes Base64-encoded segments found inside URLs, Optionally allows you to replace sensitive elements with safe placeholders (e.g., `YOUR_COMPANY`, `ANON_USER`).
-
-- **Sanitize URL (`s`)**  
-  Rewrites suspicious or dangerous URLs so they are no longer clickable. Converts `http` to `hxxp` and wraps dots (`.`) with brackets like `[.]`.
+  Splits and decodes Base64-encoded segments found inside URLs. Optionally allows you to replace sensitive elements with safe placeholders (e.g., `YOUR_COMPANY`, `ANON_USER`).
 
 - **Redirect Chaining (`r`)**  
   Build and manage redirect chains using sanitized URLs. Create new chains or extend existing ones while keeping links safe and non-clickable for secure analysis and documentation.
 
-- **Email Dump (`e`)**  
-  Collect and dedicate emails towards being a sender. Place for Email Collection, Important for later use in MISP report sheet guided mode. 
+#### *🎯 MISP REPORTING*
+- **Email Dump (`ed`)**  
+  Collect and dedicate emails toward being a sender. Place for email collection. Used later in MISP report sheet guided mode.
 
-- **Clear Terminal (`clr`)**  
+- **File Dump (`fd`)**  
+  Collect file names and associated SHA256 hashes for IOC reference and export. Used later in MISP report sheet guided mode
+
+- **URL Dump (`ud`)**  
+  Collect and sanitize various malicious and credential-harvesting URLs for MISP-ready formatting. Used later in MISP report sheet guided mode
+
+- **Excel Sheet Builder (`sheet`)**  
+  Build MISP-ready Excel sheets using collected IOCs and metadata for report output.
+
+#### *💻 PROGRAM COMMANDS*
+- **Clear Terminal (`clear`)**  
   Clears the terminal screen and redisplays the CLI banner.
 
-- **Exit (`eX`)**  
-  Quits the CLI. Prompts for save or discard of a session log of your time working in WalkerTATools
+- **Usage Menu (`usage`)**  
+  Prints the usage of WalkerTATools.
 
-- **Usage (`usage`)**  
-  Prints the usage of WalkerTATools
+- **Exit (`eX`)**  
+  Quits the CLI. Prompts to save or discard the session log of your work.
+
 
 ---
 
 ### 🛠️ Usage:
 
-Run `walkerTAtools.py` to start the tool:
+Run the tool from terminal in the WalkerTATools program folder with:
 python walkerTAtools.py
 
-Once running, you'll be prompted to enter a command. Supported commands include:
+#### *🧨 SINGLE USE COMMANDS*
+- `s`   → Sanitize a potentially dangerous URL  
+- `64d`  → Base64 Decode  
+- `64e`  → Base64 Encode  
+- `256`  → SHA256 hash for file or plaintext  
+- `64url` → Decode & redact Base64 strings in URLs  
+- `r`   → Create/edit sanitized redirect chains  
 
-64d      → Run Base64 Decode
+#### *🎯 MISP REPORTING*
+- `ed`  → Email Paster and Collector  
+- `fd`  → File Paster and Collector  
+- `ud`  → URL Paster and Collector  
+- `sheet` → Build MISP-ready Excel sheet from collected data  
 
-64e      → Run Base64 Encode
-
-256      → Run SHA256 CheckSum
-
-64url    → Run Base64 URL Splitter and Replacer
-
-e        → Email Collection and Dedication
-
-s        → Sanitize a potentially dangerous URL
-
-r        → Create and edit redirect chains
-
-clr      → Clear the terminal
-
-eX       → Exit the program
+#### *💻 PROGRAM COMMANDS*
+- `eX`  → Exit WalkerTATools, with save/discard log option  
+- `clear` → Clear terminal output  
+- `usage` → Print the usage menu  
 
 Each command routes to its respective logic via the central CLI engine.
 
 ---
 
-
-### 📝 Session Logging
-
-Each time you use WalkerTATools, a temporary session log is generated to record your actions, tool inputs, and outputs.
-
-When you exit the program using the `eX` command, you’ll be prompted to either **save** or **discard** this session log.
-
-If you choose to save it, WalkerTATools will create (or reuse) a folder called `WalkerTA_Logs` inside your **Documents** directory (e.g., `C:\Users\YourName\Documents\WalkerTA_Logs`). This folder will contain timestamped `.log` files documenting everything you did during that session.
-
-This feature is great for:
-
-- **Auditing** your triage workflow  
-- **Referencing** past inputs and decoded results  
-- **Sharing** logs with teammates for review or investigation  
-
-If you discard the log, no trace of the session is saved—giving you full control over your workflow privacy.
