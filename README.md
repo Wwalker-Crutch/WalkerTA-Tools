@@ -87,7 +87,7 @@ python walkerTAtools.py
 - `ed`  → Email Paster and Collector  
 - `fd`  → File Paster and Collector  
 - `ud`  → URL Paster and Collector
-- `id`  → IP Paster and Collector
+- `id`  → IP Paster and Collector
 - `sheet` → Build MISP-ready Excel sheet from collected data  
 
 #### *💻 PROGRAM COMMANDS*
