@@ -1,6 +1,6 @@
 """
 Name:
-    ExitMain
+    SHA256Sum
 Author:
     William Walker @ Crutchfield
 Description:
@@ -46,6 +46,24 @@ def SHA256FromFile():
     log(f"\n[SHA256] File hashed: {filename}")
     log(f"\n[SHA256] {formatted}")
     return formatted
+
+def SHA256FromString(text):
+    if not text:
+        print(colored("    ❌ No input received. Empty string provided.\n", "red"))
+        return
+
+    hash_sha256 = hashlib.sha256()
+    hash_sha256.update(text.encode("utf-8"))
+
+    digest = hash_sha256.hexdigest()
+    formatted = f"{text}|{digest}"
+
+    print(colored(f"\n    ✅ SHA256 Hash: {digest}", "green"))
+    print(colored(f"\n    📋 {formatted}", "green"))
+    log(f"\n[SHA256] String hashed: {text}")
+    log(f"\n[SHA256] {formatted}")
+    return formatted
+
 
 
 def SHA256FromPlaintext():

@@ -17,7 +17,7 @@ imports:
     @Redirect.py
     @WalkerLog.py
     @ExcelHandler.py
-    @EmailSpecs.py
+    @SpecsFileParser.py
     @DeSanitizeURL.py
     termcolor ---> For colored text
     os -----> to clear and do regular windows commands

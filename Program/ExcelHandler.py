@@ -1,6 +1,6 @@
 """
 Name:
-    ExitMain
+    ExcelHandler
 Author:
     William Walker @ Crutchfield
 Description:
@@ -11,11 +11,12 @@ imports:
 """
 from WalkerLog import *
 from termcolor import colored
-from GLOBALS import *
+import GLOBALS
 import os
 from openpyxl import load_workbook
 from datetime import datetime
-from LogReader import *
+import win32ui
+from SpecsFileParser import EmailSpecsFromFile
 
 
 def GetTemplatePath():
@@ -40,9 +41,91 @@ def MakeWalkerExcelFolder():
     return excel_folder
 
 
+def SelectEMLFile():
+    dlg = win32ui.CreateFileDialog(1, "*.eml", None, 0,
+                                   "EML Files (*.eml)|*.eml|All Files (*.*)|*.*|")
+    dlg.DoModal()
+    return dlg.GetPathName()
+
+
+def FileStartCalls():
+    print(colored("\n    📄 Select an .eml file (press Cancel to abort):", "cyan"))
+
+    try:
+        filepath = SelectEMLFile()
+        if not filepath or not os.path.isfile(filepath):
+            print(colored("    ❌ No file selected. Returning to menu.\n", "red"))
+            return
+
+        log(f"\n[EXCEL_FILE] EML selected via explorer: {filepath}")
+        print(colored(f"    ✅ Selected file: {filepath}", "green"))
+        EmailSpecsFromFile(filepath)
+        print(colored("    📦 All spec modules loaded successfully.\n", "cyan"))
+
+    except Exception as e:
+        print(colored(f"    ❌ Error during file selection: {e}", "red"))
+        return
+
+
+
+def FileExcelLogging():
+    folder = MakeWalkerExcelFolder()
+    FileStartCalls()
+
+    template_path = GetTemplatePath()
+    wb = load_workbook(template_path)
+    sheet = wb.active
+
+    field_map = {
+        "E-mail sender": GLOBALS.SENDER_ADDRESS,
+        "E-mail subject": GLOBALS.SENDER_SUBJECT,
+        "E-mail Source IP": GLOBALS.SENDER_IP,
+        "E-mail display name": GLOBALS.SENDER_DISPLAY,
+        "Artifacts dropped (file)": GLOBALS.FILES,
+        "Malicious URL": GLOBALS.MAL_URL,
+        "Credential POST": "",
+        "Redirect URL": "",
+        "Research links": ""
+    }
+
+    filled_labels = set()
+
+    for row in sheet.iter_rows(min_row=2):
+        label = row[4].value
+        if not label or label in filled_labels or label not in field_map:
+            continue
+        if row[3].value:
+            continue
+
+        value = field_map[label]
+        if isinstance(value, list):
+            value = "\n".join(value)
+        row[3].value = value
+        filled_labels.add(label)
+
+    timestamp = datetime.now().strftime("%Y-%m-%d")
+    name = input("\n    📄 Name this Excel sheet (Datetime-[INPUT].xlsx): ").strip()
+    filename = f"{timestamp}-{name}.xlsx"
+    save_path = os.path.join(folder, filename)
+    wb.save(save_path)
+
+    ResetTemplateSheet(sheet)
+    wb.save(template_path)
+
+    log(f"\n[EXCEL_LOGGING] Auto-filled sheet saved to: {save_path}")
+    print(colored(f"\n    ✅ Excel sheet saved to: {save_path}\n", "green"))
+
+
+    # TODO : CODE TO WORK ON THE OPTIONALS POST REDIRECTS AND RLs
+    # TODO : ALSO NEED TO MAKE A CORRECTION / MAKE SURE THIS IS RIGHT Function to CALL TO
+    # TODO : REPLACE WRONGFUL GLOBALS
+    # TODO: FIX SENDER ADDRESS
+
+
+
+
 def GuidedExcelLogging():
     folder = MakeWalkerExcelFolder()
-
 
 
     return
@@ -113,13 +196,15 @@ def ResetTemplateSheet(sheet):
 def ExcelHandlerMain():
     print(colored("\n    *-------------------------📶 Excel Logging 📶--------------------------*", "magenta"))
 
-    mode = input("\n    Choose logging mode, Guided or Manual (g/m): ").strip().lower()
+    mode = input("\n    Choose logging mode. Guided, Manual, or File (g/m/f): ").strip().lower()
 
     if mode == "g":
         GuidedExcelLogging()
     elif mode == "m":
         ManualExcelLogging()
+    elif mode == "f":
+        FileExcelLogging()
     else:
-        print(colored("    ❌ Invalid option. Please choose 'G' or 'M'.", "red"))
+        print(colored("    ❌ Invalid option. Please choose 'G','M', or 'f'.", "red"))
 
     print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
