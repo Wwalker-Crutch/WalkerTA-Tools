@@ -106,3 +106,4 @@ Each command routes to its respective logic via the central CLI engine.
 
 ---
 
+<sub>Contact: For questions and inquiries contact me at wbw1991@g.rit.edu</sub>
