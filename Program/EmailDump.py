@@ -15,6 +15,7 @@ Imports:
 
 from termcolor import colored
 from WalkerLog import *
+from GLOBALSChecker import GlobalCheckerMain
 import GLOBALS
 
 
@@ -69,12 +70,11 @@ def PromptForSenderAddress():
 
 
 def FoundEmails():
-    print(colored("\n    📥 Enter discovered emails:", "cyan"))
+    print(colored("\n    📥 Enter discovered emails (press Enter w/o typing to finish):", "cyan"))
 
-    print(colored("\n        📥 Extra Emails Found ('d' to finish):", "cyan"))
     while True:
         email = input("        ➤ ").strip()
-        if email.lower() == "d":
+        if email == "":
             break
         if email:
             GLOBALS.FOUND_EMAILS.append(email)
@@ -117,15 +117,19 @@ def EmailSpecificGlobals():
 def EmailDumpMain():
     print(colored("\n    *-------------------------📨 Email Dump Tool 📨------------------------*", "magenta"))
 
-    choice = input("\n    Add to discovered emails, print collected emails, or set email specifics (d/p/s): ").strip().lower()
+    choice = input("\n    Add to Discovered Emails, Print Collected Emails, or Set Email Specifics (a/p/s): ").strip().lower()
 
-    if choice == "d":
+    if choice == "a":
         FoundEmails()
+        print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
     elif choice == "p":
         PrintCollectedEmails()
+        print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
     elif choice == "s":
         EmailSpecificGlobals()
+        print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
+        GlobalCheckerMain()
     else:
-        print(colored("    ❌ Invalid option. Please choose 'd' or 'p'.", "red"))
+        print(colored("    ❌ Invalid option. Please choose 'd','p', or 's'.", "red"))
+        print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
 
-    print(colored("\n    *----------------------------------------------------------------------*", "magenta"))

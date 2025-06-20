@@ -48,6 +48,7 @@ def GuidedExcelLogging():
     return
 
 def ManualExcelLogging():
+
     folder = MakeWalkerExcelFolder()
     template_path = GetTemplatePath()
     wb = load_workbook(template_path)
@@ -66,22 +67,28 @@ def ManualExcelLogging():
     ]
 
     for label in field_order:
-        print(colored(f"\n    🔹 Enter values for {label.upper()} (type 'n' to stop)", "yellow"))
+        print(colored(f"\n    🔹 Enter values for {label.upper()} (press Enter to skip, 'n' to cancel)", "yellow"))
 
         row_count = 0
         for row in sheet.iter_rows(min_row=2):
             comment = row[4].value
             if comment != label:
                 continue
-
             if row[3].value:
                 continue
 
             val = input("     ➤ Value: ").strip()
             if val.lower() == "n":
+                ResetTemplateSheet(sheet)
+                wb.save(template_path)
+                print(colored("\n    ❌ Logging manually canceled by user.\n", "red"))
+                return
+
+            elif val == "":
                 break
-            row[3].value = val
-            row_count += 1
+            else:
+                row[3].value = val
+                row_count += 1
 
             if row_count >= 5:
                 break
@@ -91,9 +98,16 @@ def ManualExcelLogging():
     filename = f"{timestamp}-{name}.xlsx"
     save_path = os.path.join(folder, filename)
     wb.save(save_path)
+    ResetTemplateSheet(sheet)
+    wb.save(template_path)
 
     log(f"\n[EXCEL_LOGGING] Manual sheet saved to: {save_path}")
     print(colored(f"\n    ✅ Excel sheet saved to: {save_path}\n", "green"))
+
+def ResetTemplateSheet(sheet):
+    for row in sheet.iter_rows(min_row=2):
+        if row[3].value:
+            row[3].value = None
 
 
 def ExcelHandlerMain():

@@ -14,6 +14,7 @@ Imports:
 """
 from termcolor import colored
 from WalkerLog import *
+from GLOBALSChecker import GlobalCheckerMain
 import GLOBALS
 
 
@@ -27,16 +28,15 @@ def PromptForSenderIP():
         print(colored("        ↪️ No Sender IP provided; skipping.", "yellow"))
 
 
-
 def PromptForDiscoveredIPs():
-    print(colored("\n        ➕ Extra Discovered IPs (type 'd' to finish):", "cyan"))
+    print(colored("\n        ➕ Extra Discovered IPs (press Enter w/o typing to finish):", "cyan"))
     while True:
-        label = input("        🏷️ Title/Context for IP (e.g., SuspiciousSrc): ").strip()
-        if label.lower() == "d":
+        label = input("        🏷️Title/Context for IP (e.g., SuspiciousSrc): ").strip()
+        if label == "":
             break
 
         ip = input("        🌐 Enter corresponding IP address: ").strip()
-        if ip.lower() == "d":
+        if ip == "":
             break
 
         if ip:
@@ -71,13 +71,16 @@ def IPDumpMain():
     choice = input("\n    Add IPs, Print collected IPs, or Set sender IP only (a/p/s): ").strip().lower()
 
     if choice == "a":
-        PromptForSenderIP()
         PromptForDiscoveredIPs()
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
     elif choice == "p":
         PrintCollectedIPs()
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
     elif choice == "s":
         IPSpecificGlobals()
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
+        GlobalCheckerMain()
     else:
-        print(colored("    ❌ Invalid option. Please choose 'a' or 'p'.", "red"))
+        print(colored("    ❌ Invalid option. Please choose 'a','p', or 's'.", "red"))
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
 
-    print(colored("\n    *------------------------------------------------------------------------*", "magenta"))

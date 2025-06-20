@@ -17,6 +17,7 @@ Imports:
 from termcolor import colored
 from WalkerLog import *
 import GLOBALS
+from GLOBALSChecker import GlobalCheckerMain
 from SanitizeURL import SanitizeURL
 
 
@@ -43,18 +44,15 @@ def PromptForCredPostURL():
 
 
 def PromptForExtraURLs():
-    print(colored("\n        ➕ Extra Discovered URLs (type 'd' to finish):", "cyan"))
+    print(colored("\n        ➕ Extra Discovered URLs (press Enter w/o typing to finish):", "cyan"))
     while True:
         url = input("        ➤ ").strip()
-        if url.lower() == "d":
+        if url == "":
             break
-        if url:
-            sanitized = SanitizeURL(url)
-            GLOBALS.URL_LIST.append(f"DiscoveredURL: {sanitized}")
-            log(f"\n[URL_DUMP] Discovered URL Added: {sanitized}")
-            print(colored("        ✅ URL added.", "green"))
-        else:
-            print(colored("        ⚠️ Empty input ignored.", "yellow"))
+        sanitized = SanitizeURL(url)
+        GLOBALS.URL_LIST.append(f"DiscoveredURL: {sanitized}")
+        log(f"\n[URL_DUMP] Discovered URL Added: {sanitized}")
+        print(colored("        ✅ URL added.", "green"))
 
 
 def PrintCollectedURLs():
@@ -82,13 +80,13 @@ def PrintCollectedURLs():
 
 
 def PromptForResearchLinks():
-    print(colored("\n        🔍 Research Links (type 'd' to finish):", "cyan"))
+    print(colored("\n        🔍 Research Links (press Enter without typing to finish):", "cyan"))
     while True:
         url = input("        ➤ ").strip()
-        if url.lower() == "d":
+        if url == "":
             break
         if url:
-            GLOBALS.RESEARCH_LINKS.append(f"{url}")
+            GLOBALS.RESEARCH_LINKS.append(url)
             log(f"\n[URL_DUMP] Research Link Added: {url}")
             print(colored("        ✅ Research link added.", "green"))
         else:
@@ -110,16 +108,19 @@ def URLDumpMain():
     choice = input("\n    Add URLs, Research Links, Print collected URLs, or Set MISP Specific URLs (a/r/p/s): ").strip().lower()
 
     if choice == "a":
-        PromptForMaliciousURL()
-        PromptForCredPostURL()
         PromptForExtraURLs()
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
     elif choice == "p":
         PrintCollectedURLs()
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
     elif choice == "r":
         PromptForResearchLinks()
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
+        GlobalCheckerMain()
     elif choice == "s":
         URLSpecificGlobals()
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
+        GlobalCheckerMain()
     else:
         print(colored("    ❌ Invalid option. Please choose 'a', 'r', 'p', or 's'.", "red"))
-
-    print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
+        print(colored("\n    *------------------------------------------------------------------------*", "magenta"))

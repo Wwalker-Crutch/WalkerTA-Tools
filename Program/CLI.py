@@ -37,6 +37,7 @@ from FileDump import FileDumpMain
 from URLDump import URLDumpMain
 from IPDump import IPDumpMain
 from DeSanitizeURL import DesanitizeURLMain
+from GLOBALSPrint import GLOBALSPrintMain
 import os
 
 
@@ -176,6 +177,8 @@ def CommandLineMain():
             URLDumpMain()
         elif flag == "id":
             IPDumpMain()
+        elif flag == "G":
+            GLOBALSPrintMain()
         elif flag == "eX":
             if ExitMain():
                 break

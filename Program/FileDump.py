@@ -17,20 +17,20 @@ from termcolor import colored
 from WalkerLog import *
 import GLOBALS
 from SHA256Sum import SHA256FromFile, SHA256FromPlaintext
-
+from GLOBALSChecker import GlobalCheckerMain
 
 def FoundFiles():
-    print(colored("\n    📥 Add file entries (type 'd' to finish):", "cyan"))
+    print(colored("\n    📥 Add file entries (press Enter w/o typing to finish):", "cyan"))
     while True:
-        choice = input("\n    ➤ Use file explorer or plaintext filename? (f/p/d): ").strip().lower()
-        if choice == "d":
+        choice = input("\n    ➤ Use file explorer or plaintext filename? (f/p) (Enter to finish): ").strip().lower()
+        if choice == "":
             break
         elif choice == "f":
             result = SHA256FromFile()
         elif choice == "p":
             result = SHA256FromPlaintext()
         else:
-            print(colored("    ❌ Invalid input. Type 'f', 'p', or 'd'.", "red"))
+            print(colored("    ❌ Invalid input. Type 'f', 'p', or just press Enter to finish.", "red"))
             continue
 
         if result:
@@ -39,6 +39,7 @@ def FoundFiles():
             log(f"\n[FILES_DUMP] Found File Added: {result}")
         else:
             print(colored("    ⚠️ Entry not added due to error or invalid input.", "yellow"))
+
 
 
 def PrintCollectedFiles():
@@ -52,13 +53,16 @@ def PrintCollectedFiles():
 
 def FileDumpMain():
     print(colored("\n    *--------------------------📁 File Dump Tool 📁-------------------------*", "magenta"))
-    choice = input("\n    Add file hashes or Print collected data (f/p): ").strip().lower()
+    choice = input("\n    Add file hashes or Print collected data (a/p): ").strip().lower()
 
-    if choice == "f":
+    if choice == "a":
         FoundFiles()
+        print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
+        GlobalCheckerMain()
     elif choice == "p":
         PrintCollectedFiles()
+        print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
     else:
         print(colored("    ❌ Invalid option. Please choose 'a' or 'p'.", "red"))
+        print(colored("\n    *----------------------------------------------------------------------*", "magenta"))
 
-    print(colored("\n    *------------------------------------------------------------------------*", "magenta"))
