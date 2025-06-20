@@ -23,6 +23,9 @@ MAL_URL = ""
 POST_URL = ""
 SENDER_IP = ""
 IP_LIST = {}
+RESEARCH_LINKS = []
+SENDER_SUBJECT = ""
+SENDER_DISPLAY = ""
 
 
 def MakeWalkerToolsFolder():

@@ -17,6 +17,27 @@ from termcolor import colored
 from WalkerLog import *
 import GLOBALS
 
+
+
+def PromptForDisplayName():
+    display_name = input("\n        🧾 Enter Display Name (press Enter to skip): ").strip()
+    if display_name:
+        GLOBALS.SENDER_DISPLAY = display_name
+        log(f"\n[EMAIL_DUMP] Display Name Set: {GLOBALS.SENDER_DISPLAY}")
+        print(colored("        ✅ Display name set.", "green"))
+    else:
+        print(colored("        ↪️ No display name provided; skipping.", "yellow"))
+
+def PromptForSubjectLine():
+    subject = input("\n        📝 Enter Email Subject (press Enter to skip): ").strip()
+    if subject:
+        GLOBALS.SENDER_SUBJECT = subject
+        log(f"\n[EMAIL_DUMP] Subject Line Set: {GLOBALS.SENDER_SUBJECT}")
+        print(colored("        ✅ Subject line set.", "green"))
+    else:
+        print(colored("        ↪️ No subject line provided; skipping.", "yellow"))
+
+
 def PromptForSenderFromAddress():
     sender_from = input("\n        📨 Enter Sender-From address (press Enter to skip): ").strip()
     if sender_from:
@@ -49,9 +70,6 @@ def PromptForSenderAddress():
 
 def FoundEmails():
     print(colored("\n    📥 Enter discovered emails:", "cyan"))
-    PromptForSenderAddress()
-    PromptForSenderFromAddress()
-    PromptForReturnPath()
 
     print(colored("\n        📥 Extra Emails Found ('d' to finish):", "cyan"))
     while True:
@@ -85,15 +103,28 @@ def PrintCollectedEmails():
     else:
         print("       None")
 
+def EmailSpecificGlobals():
+    print(colored("\n    ✉️ Enter Specific Email Metadata:", "cyan"))
+
+    PromptForDisplayName()
+    PromptForSubjectLine()
+    PromptForSenderAddress()
+    PromptForSenderFromAddress()
+    PromptForReturnPath()
+
+
+
 def EmailDumpMain():
     print(colored("\n    *-------------------------📨 Email Dump Tool 📨------------------------*", "magenta"))
 
-    choice = input("\n    Add to discovered emails or Print collected emails (d/p): ").strip().lower()
+    choice = input("\n    Add to discovered emails, print collected emails, or set email specifics (d/p/s): ").strip().lower()
 
     if choice == "d":
         FoundEmails()
     elif choice == "p":
         PrintCollectedEmails()
+    elif choice == "s":
+        EmailSpecificGlobals()
     else:
         print(colored("    ❌ Invalid option. Please choose 'd' or 'p'.", "red"))
 

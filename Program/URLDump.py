@@ -18,6 +18,8 @@ from termcolor import colored
 from WalkerLog import *
 import GLOBALS
 from SanitizeURL import SanitizeURL
+
+
 def PromptForMaliciousURL():
     url = input("\n        🌐 Enter Malicious URL (press Enter to skip): ").strip()
     if url:
@@ -71,11 +73,41 @@ def PrintCollectedURLs():
     else:
         print("       None")
 
+    print(colored("    Research Links:", "blue"))
+    if GLOBALS.RESEARCH_LINKS:
+        for entry in GLOBALS.RESEARCH_LINKS:
+            print(f"       {entry}")
+    else:
+        print("       None")
+
+
+def PromptForResearchLinks():
+    print(colored("\n        🔍 Research Links (type 'd' to finish):", "cyan"))
+    while True:
+        url = input("        ➤ ").strip()
+        if url.lower() == "d":
+            break
+        if url:
+            GLOBALS.RESEARCH_LINKS.append(f"{url}")
+            log(f"\n[URL_DUMP] Research Link Added: {url}")
+            print(colored("        ✅ Research link added.", "green"))
+        else:
+            print(colored("        ⚠️ Empty input ignored.", "yellow"))
+
+
+
+def URLSpecificGlobals():
+    print(colored("\n    🌐 Enter Specific URL Metadata:", "cyan"))
+
+    PromptForMaliciousURL()
+    PromptForCredPostURL()
+
+
 
 def URLDumpMain():
     print(colored("\n    *-------------------------🌐 URL Dump Tool 🌐--------------------------*", "magenta"))
 
-    choice = input("\n    Add URLs or Print collected URLs (a/p): ").strip().lower()
+    choice = input("\n    Add URLs, Research Links, Print collected URLs, or Set MISP Specific URLs (a/r/p/s): ").strip().lower()
 
     if choice == "a":
         PromptForMaliciousURL()
@@ -83,7 +115,11 @@ def URLDumpMain():
         PromptForExtraURLs()
     elif choice == "p":
         PrintCollectedURLs()
+    elif choice == "r":
+        PromptForResearchLinks()
+    elif choice == "s":
+        URLSpecificGlobals()
     else:
-        print(colored("    ❌ Invalid option. Please choose 'a' or 'p'.", "red"))
+        print(colored("    ❌ Invalid option. Please choose 'a', 'r', 'p', or 's'.", "red"))
 
     print(colored("\n    *------------------------------------------------------------------------*", "magenta"))

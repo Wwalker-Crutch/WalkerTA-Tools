@@ -18,6 +18,7 @@ imports:
     @WalkerLog.py
     @ExcelHandler.py
     @EmailSpecs.py
+    @DeSanitizeURL.py
     termcolor ---> For colored text
     os -----> to clear and do regular windows commands
 """
@@ -35,8 +36,8 @@ from EmailDump import EmailDumpMain
 from FileDump import FileDumpMain
 from URLDump import URLDumpMain
 from IPDump import IPDumpMain
+from DeSanitizeURL import DesanitizeURLMain
 import os
-import time
 
 
 def PrettyPrint():
@@ -49,6 +50,7 @@ def PrettyPrint():
     print()
     print(colored("     *--------------------🧨 SINGLE USE COMMANDS 🧨----------------------*", "blue"))
     print("         s:        Sanitize a potentially dangerous URL")
+    print("         ds:       Desanitize a URL for investigation")
     print("         64d:      Run Base64 Decode")
     print("         64e:      Command to run Base64 Encode")
     print("         256:      Run SHA256Sum on a File or Plaintext, Creates Hash")
@@ -76,6 +78,7 @@ def PrintUsage():
     print()
     print(colored("     *--------------------🧨 SINGLE USE COMMANDS 🧨----------------------*", "blue"))
     print("         s:        Sanitize a potentially dangerous URL")
+    print("         ds:       Desanitize a URL for investigation")
     print("         64d:      Run Base64 Decode")
     print("         64e:      Command to run Base64 Encode")
     print("         256:      Run SHA256Sum on a File or Plaintext, Creates Hash")
@@ -103,6 +106,7 @@ def PrintUsageError():
     print()
     print(colored("     *--------------------🧨 SINGLE USE COMMANDS 🧨----------------------*", "blue"))
     print("         s:        Sanitize a potentially dangerous URL")
+    print("         ds:       Desanitize a URL for investigation")
     print("         64d:      Run Base64 Decode")
     print("         64e:      Command to run Base64 Encode")
     print("         256:      Run SHA256Sum on a File or Plaintext, Creates Hash")
@@ -150,6 +154,8 @@ def CommandLineMain():
             Base64EncodeMain()
         elif flag == "s":
             SanitizeURLMain()
+        elif flag == "ds":
+            DesanitizeURLMain()
         elif flag == "64url":
             Base64URLSplitterMain()
         elif flag == "clear":

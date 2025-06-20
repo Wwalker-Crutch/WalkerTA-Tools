@@ -60,16 +60,23 @@ def PrintCollectedIPs():
         print("       None")
 
 
+def IPSpecificGlobals():
+    print(colored("\n    🌐 Enter Specific IP Metadata:", "cyan"))
+
+    PromptForSenderIP()
+
 def IPDumpMain():
     print(colored("\n    *--------------------------📡 IP Dump Tool 📡--------------------------*", "magenta"))
 
-    choice = input("\n    Add IPs or Print collected IPs (a/p): ").strip().lower()
+    choice = input("\n    Add IPs, Print collected IPs, or Set sender IP only (a/p/s): ").strip().lower()
 
     if choice == "a":
         PromptForSenderIP()
         PromptForDiscoveredIPs()
     elif choice == "p":
         PrintCollectedIPs()
+    elif choice == "s":
+        IPSpecificGlobals()
     else:
         print(colored("    ❌ Invalid option. Please choose 'a' or 'p'.", "red"))
 
