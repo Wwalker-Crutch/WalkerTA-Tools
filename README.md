@@ -27,7 +27,7 @@ It brings together a set of focused tools designed to handle:
   Rewrites suspicious or dangerous URLs so they are no longer clickable. Converts `http` to `hxxp` and wraps dots (`.`) with brackets like `[.]`.
 
 - **Desanitize URL (`ds`)**  
-  Reverts sanitized URLs back to their original form. Converts hxxp to http and replaces bracketed dots like '[.]' with regular dots ('.'), restoring the clickable format for analysis or submission.
+  Reverts sanitized URLs back to their original form. Converts hxxp to http and replaces bracketed dots like `[.]` with regular dots (`.`), restoring the clickable format for analysis or submission.
 
 - **Base64 Decode (`64d`)**  
   Decodes standard Base64-encoded strings for analysis or cleanup. Accepts both padded and unpadded input.
@@ -81,24 +81,26 @@ Run the tool from terminal in the WalkerTATools program folder with:
 python walkerTAtools.py
 
 #### *🧨 SINGLE USE COMMANDS*
-- `s`   → Sanitize a potentially dangerous URL  
+- `s`   → Sanitize a potentially dangerous URL
+- `ds`   → Desanitize a URL to investigate
 - `64d`  → Base64 Decode  
 - `64e`  → Base64 Encode  
 - `256`  → SHA256 hash for file or plaintext  
 - `64url` → Decode & redact Base64 strings in URLs  
-- `r`   → Create/edit sanitized redirect chains  
 
 #### *🎯 MISP REPORTING*
 - `ed`  → Email Paster and Collector  
 - `fd`  → File Paster and Collector  
 - `ud`  → URL Paster and Collector
 - `id`  → IP Paster and Collector
+- `r`   → Create/edit sanitized redirect chains
 - `sheet` → Build MISP-ready Excel sheet from collected data  
 
 #### *💻 PROGRAM COMMANDS*
 - `eX`  → Exit WalkerTATools, with save/discard log option  
 - `clear` → Clear terminal output  
-- `usage` → Print the usage menu  
+- `usage` → Print the usage menu
+- `G`     → Print stored variables
 
 Each command routes to its respective logic via the central CLI engine.
 
